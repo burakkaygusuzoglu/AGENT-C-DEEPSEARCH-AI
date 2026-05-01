@@ -20,6 +20,7 @@ LangGraph state machine with 4 nodes and conditional edges:
 
 from __future__ import annotations
 
+import logging
 import os
 from typing import Annotated, Literal, TypedDict
 
@@ -29,6 +30,8 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import END, START, StateGraph
 
 load_dotenv()
+
+_log = logging.getLogger("deep_research")
 
 # ── LLM setup (GitHub Models) ────────────────────────────────────────────────
 def get_llm() -> ChatOpenAI:
@@ -87,6 +90,7 @@ Examples:
     if route not in ("rag_only", "web_only", "both", "off_topic"):
         route = "both"  # safe default
 
+    _log.info("Router decision: %s | query=%r", route, state["query"])
     print(f"\n🔀 Router decision: {route}")
     return {**state, "route": route}
 
@@ -109,6 +113,7 @@ def rag_node(state: ResearchState) -> ResearchState:
     from src.rag_pipeline import retrieve
 
     print("📚 RAG node: searching corpus...")
+    _log.info("RAG node triggered | query=%r", state["query"])
     context = retrieve(state["query"])
     return {**state, "rag_result": context}
 
@@ -119,6 +124,7 @@ def web_node(state: ResearchState) -> ResearchState:
     from src.web_search import search_web
 
     print("🌐 Web node: searching internet...")
+    _log.info("Web node triggered | query=%r", state["query"])
     results = search_web(state["query"])
     return {**state, "web_result": results}
 
@@ -130,6 +136,7 @@ def both_node(state: ResearchState) -> ResearchState:
     from src.web_search import search_web
 
     print("📚🌐 Both node: corpus + web search...")
+    _log.info("Both node triggered | query=%r", state["query"])
     rag_context  = retrieve(state["query"])
     web_context  = search_web(state["query"])
     return {**state, "rag_result": rag_context, "web_result": web_context}
