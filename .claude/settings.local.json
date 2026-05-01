@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\asus\\\\Desktop\\\\deep-research-agent\" -Recurse -Force)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\asus\\\\Desktop\\\\deep-research-agent\" -Force | Where-Object { $_.PSIsContainer -eq $false } | Select-Object Name)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\asus\\\\Desktop\\\\deep-research-agent\" -Depth 1 -Force | Where-Object { $_.PSIsContainer -eq $true } | Select-Object Name)"
+    ]
+  }
+}

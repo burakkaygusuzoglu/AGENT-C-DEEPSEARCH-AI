@@ -9,6 +9,7 @@ Usage:
 
 import sys
 import os
+import time
 import argparse
 from pathlib import Path
 from dotenv import load_dotenv
@@ -29,6 +30,7 @@ Type your research question (or 'quit' to exit)
 
 def run_agent(query: str) -> str:
     from src.agent import build_graph
+    from src.logger import save_query_log
 
     graph = build_graph()
     initial_state = {
@@ -36,6 +38,7 @@ def run_agent(query: str) -> str:
         "route":        "",
         "rag_result":   "",
         "web_result":   "",
+        "sources":      [],
         "final_answer": "",
     }
 
@@ -43,7 +46,29 @@ def run_agent(query: str) -> str:
     print(f"❓ Query: {query}")
     print(f"{'='*55}")
 
-    result = graph.invoke(initial_state)
+    t0 = time.monotonic()
+    try:
+        result = graph.invoke(initial_state)
+        duration_ms = int((time.monotonic() - t0) * 1000)
+        save_query_log(
+            query=query,
+            route=result.get("route", "unknown"),
+            rag_result=result.get("rag_result", ""),
+            web_result=result.get("web_result", ""),
+            final_answer=result.get("final_answer", ""),
+            duration_ms=duration_ms,
+            success=True,
+        )
+    except Exception as exc:
+        duration_ms = int((time.monotonic() - t0) * 1000)
+        save_query_log(
+            query=query,
+            route="error",
+            duration_ms=duration_ms,
+            success=False,
+            error=str(exc),
+        )
+        raise
 
     print(f"\n{'='*55}")
     print("📋 RESEARCH BRIEF")

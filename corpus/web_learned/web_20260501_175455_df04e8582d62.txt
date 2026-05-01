@@ -1,0 +1,17 @@
+Source: Web Search
+Query: What are the latest AI agent frameworks released in 2025?
+Date: 20260501_175455
+
+[Result 4] The Complete Guide to Choosing an AI Agent Framework in 2025 | Langflow | Low-code AI builder for agentic and RAG applications
+https://www.langflow.org/blog/the-complete-guide-to-choosing-an-ai-agent-framework-in-2025
+Langflow 1.9 released: Langflow Assistant, Flow DevOps Toolkit, and MCP support for IDEs and coding agents
+
+## Langflow 1.9 released: Langflow Assistant, Flow DevOps Toolkit, and MCP support for IDEs and coding agents
+
+Langflow Dev Team
+
+Written by Langflow Dev Team
+
+April 13, 2026
+
+Langflow 1.9 introduces new capabilities for building, operating, and integrating AI workflows, with updates focused

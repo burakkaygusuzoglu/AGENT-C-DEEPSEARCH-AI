@@ -1,0 +1,3 @@
+2026-05-01 18:35:53,607 [INFO] Router decision: off_topic | query='corpusu tara'
+2026-05-01 18:35:53,608 [INFO] Off-topic query rejected: 'corpusu tara'
+2026-05-01 18:35:53,609 [INFO] Query logged | route=off_topic  |  1578 ms | success=True

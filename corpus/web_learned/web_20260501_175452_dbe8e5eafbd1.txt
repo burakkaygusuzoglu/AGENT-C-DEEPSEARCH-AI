@@ -1,0 +1,7 @@
+Source: Web Search
+Query: What are the latest AI agent frameworks released in 2025?
+Date: 20260501_175452
+
+[Result 1] Top AI Agent Frameworks in 2025: Honest Reviews and Real-World ...
+https://buildwithcham.medium.com/top-ai-agent-frameworks-in-2025-honest-reviews-and-real-world-results-a72f4edb9df4
+Auto-GPT (latest release) · MetaGPT · Superagent · AgentOps · Hypercycle Agents · Windsurf · Cursor with Claude MAX; Microsoft Autogen · Reka

@@ -1,0 +1,11 @@
+Source: Web Search
+Query: What are the latest AI agent frameworks released in 2025?
+Date: 20260501_175643
+
+[Result 1] Best 10 AI Agent Frameworks for 2025
+https://deepchecks.com/best-ai-agent-frameworks/
+## Best 10 AI Agent Frameworks for 2025
+
+### 8. Rasa
+
+Rasa, an open-source AI platform, specializes in developing conversational AI agents that use NLU and dialogue management. The agent framework provides intent recognition, entity extraction, and dynamic conversation flow, allowing for context-aware, multi-turn interactions. Rasa allows multi-agent orchestration for collaborative tasks, integrat

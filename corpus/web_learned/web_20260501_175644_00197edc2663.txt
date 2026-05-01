@@ -1,0 +1,9 @@
+Source: Web Search
+Query: What are the latest AI agent frameworks released in 2025?
+Date: 20260501_175644
+
+[Result 2] 12 AI Agent Frameworks for Enterprises in 2025 | AI21
+https://www.ai21.com/knowledge/ai-agent-frameworks/
+## Choosing the right AI agent framework
+
+Some of the top AI agent frameworks for enterprises are LangChain, Semantic Kernel, CrewAI, and Autogen, which offer diverse capabilities. Some focus on modularity and simplicity, helping with Semantic search and information retrieval, while others offer self-reflective AI systems capable of improving their own performance and supporting the building of so

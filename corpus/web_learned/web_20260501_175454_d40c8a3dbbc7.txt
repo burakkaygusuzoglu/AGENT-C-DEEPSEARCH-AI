@@ -1,0 +1,11 @@
+Source: Web Search
+Query: What are the latest AI agent frameworks released in 2025?
+Date: 20260501_175454
+
+[Result 3] 12 AI Agent Frameworks for Enterprises in 2025 | AI21
+https://www.ai21.com/knowledge/ai-agent-frameworks/
+In this article, we’ll examine some of the most popular AI agent frameworks, outline their unique strengths, and discuss key factors enterprises should consider when selecting the right framework for their needs.
+
+## What are AI agent frameworks?
+
+AI agent frameworks are pre-built modules that can be used to build intelligent AI systems without starting from scratch. They support the development o

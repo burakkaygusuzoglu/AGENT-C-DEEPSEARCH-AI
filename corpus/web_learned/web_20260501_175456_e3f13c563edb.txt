@@ -1,0 +1,11 @@
+Source: Web Search
+Query: What are the latest AI agent frameworks released in 2025?
+Date: 20260501_175456
+
+[Result 5] 9 Key AI Governance Frameworks in 2025 | AI21
+https://www.ai21.com/knowledge/ai-governance-frameworks/
+The European Union’s AI Act introduces a tiered, risk-based classification system, categorizing AI systems as unacceptable, high, limited, or minimal risk. This structure includes explicit prohibitions on certain high-risk uses and is not replicated in most other governance frameworks.
+
+## 9 Key legal and regulatory AI governance frameworks for 2025
+
+Legal and regulatory frameworks can help organi

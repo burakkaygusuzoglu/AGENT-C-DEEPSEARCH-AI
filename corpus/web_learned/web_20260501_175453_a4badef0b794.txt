@@ -1,0 +1,9 @@
+Source: Web Search
+Query: What are the latest AI agent frameworks released in 2025?
+Date: 20260501_175453
+
+[Result 2] Best 10 AI Agent Frameworks for 2025
+https://deepchecks.com/best-ai-agent-frameworks/
+## Conclusion
+
+AI agent frameworks are transforming how organizations automate tasks and make decisions, shifting from experimental tools to production-ready platforms. This article discusses ten leading AI agent frameworks, including LangChain and LangGraph for complex workflows, AutoGen and CrewAI for multi-agent collaboration, LlamaIndex and Haystack for data-intensive tasks, Semantic Kernel fo

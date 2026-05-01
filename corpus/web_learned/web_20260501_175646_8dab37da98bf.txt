@@ -1,0 +1,11 @@
+Source: Web Search
+Query: What are the latest AI agent frameworks released in 2025?
+Date: 20260501_175646
+
+[Result 4] AI Agent Frameworks: A Practical Guide (2025) | Salesforce EU
+https://www.salesforce.com/eu/agentforce/ai-agents/ai-agent-frameworks/
+Share the story
+
+# AI Agent Frameworks: A Practical Guide
+
+AI agents are the latest advancement in artificial intelligence, designed to perform tasks autonomously and interact with humans or other systems in a sophisticated way. Building an agent and getting it deployed into production can seem daunting at first, but the good news is that you don't need to build from scratch. A range of AI agent f

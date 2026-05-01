@@ -1,8 +1,8 @@
 """
 Web Search Tool
 ================
-Uses Tavily Search API — free tier gives 1,000 searches/month.
-Get your key at: https://tavily.com
+Uses Tavily Search API.
+Returns both formatted content AND structured source list.
 """
 
 import os
@@ -10,8 +10,8 @@ import os
 
 def search_web(query: str, max_results: int = 5) -> str:
     """
-    Search the web using Tavily and return formatted results.
-    Falls back to a helpful message if API key is missing.
+    Search the web using Tavily.
+    Returns formatted string with content + URLs embedded.
     """
     api_key = os.getenv("TAVILY_API_KEY", "")
 
@@ -23,8 +23,7 @@ def search_web(query: str, max_results: int = 5) -> str:
 
     try:
         from tavily import TavilyClient
-        client = TavilyClient(api_key=api_key)
-
+        client   = TavilyClient(api_key=api_key)
         response = client.search(
             query=query,
             max_results=max_results,
@@ -39,8 +38,9 @@ def search_web(query: str, max_results: int = 5) -> str:
         for i, r in enumerate(results, 1):
             title   = r.get("title", "No title")
             url     = r.get("url", "")
-            content = r.get("content", "")[:400]  # truncate
-            formatted.append(f"[Result {i}] {title}\n{url}\n{content}")
+            content = r.get("content", "")[:500]
+            # URL embedded in content block so learn_from_web also saves it
+            formatted.append(f"[Result {i}] {title}\nURL: {url}\n{content}")
 
         return "\n\n---\n\n".join(formatted)
 
@@ -48,7 +48,34 @@ def search_web(query: str, max_results: int = 5) -> str:
         return f"Web search error: {e}"
 
 
-# ── Quick test ────────────────────────────────────────────────────────────────
+def get_sources(web_result: str) -> list[dict]:
+    """
+    Parse URL and title from the formatted web_result string.
+    Returns list of { title, url } dicts for display.
+    """
+    sources = []
+    if not web_result or "[Web search unavailable" in web_result:
+        return sources
+
+    blocks = web_result.split("\n\n---\n\n")
+    for block in blocks:
+        lines = block.strip().splitlines()
+        title = ""
+        url   = ""
+        for line in lines:
+            if line.startswith("[Result") and "]" in line:
+                title = line.split("]", 1)[-1].strip()
+            elif line.startswith("URL:"):
+                url = line.replace("URL:", "").strip()
+        if url:
+            sources.append({"title": title, "url": url})
+
+    return sources
+
+
 if __name__ == "__main__":
-    result = search_web("latest developments in LLM agents 2025")
+    result = search_web("latest LangGraph features 2025")
     print(result)
+    print("\n--- SOURCES ---")
+    for s in get_sources(result):
+        print(f"  {s['title']} → {s['url']}")
