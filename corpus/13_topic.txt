@@ -1,0 +1,37 @@
+Title: AI Research Document 13
+Source: Research Corpus
+
+Topic: Federated Learning and Privacy-Preserving AI
+
+Federated Learning (FL) enables training machine learning models across multiple decentralized devices or servers without sharing raw data. Each participant trains locally and only shares model updates.
+
+How Federated Learning Works:
+1. Central server sends global model to participants
+2. Each participant trains on local data and computes gradient updates
+3. Participants send only gradients (not raw data) to server
+4. Server aggregates updates (e.g., FedAvg) to update global model
+5. Repeat
+
+Key Algorithms:
+- FedAvg (McMahan et al., 2017): Weighted average of local model updates. Simple and effective baseline.
+- FedProx: Adds proximal term to handle heterogeneous data distributions
+- FedNova: Normalizes local updates to correct for different local step counts
+
+Privacy Guarantees:
+Even sharing gradients can leak information about local data. Additional privacy mechanisms:
+- Differential Privacy (DP): Add carefully calibrated noise to gradients
+- Secure Aggregation: Cryptographic protocol where server only sees aggregate, not individual updates
+- Homomorphic Encryption: Compute on encrypted data
+
+Applications:
+- Mobile keyboards (Google Gboard): Next-word prediction trained on device
+- Healthcare: Train diagnostic models across hospitals without sharing patient records
+- Finance: Fraud detection models trained across banks
+
+Challenges:
+- Communication cost: Many rounds of server-client communication
+- Non-IID data: Local data distributions differ, hurting convergence
+- Systems heterogeneity: Participants have different compute and network
+- Free-rider attacks: Participants submit garbage updates while benefiting
+
+FL frameworks: PySyft, Flower, TensorFlow Federated, FedML

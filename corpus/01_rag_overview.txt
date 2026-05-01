@@ -1,0 +1,33 @@
+Title: Retrieval-Augmented Generation (RAG) — A Comprehensive Overview
+Source: Research Corpus
+
+Retrieval-Augmented Generation (RAG) is a hybrid AI technique that combines the strengths of large language models (LLMs) with external retrieval systems. Rather than relying solely on parametric knowledge baked into model weights during training, RAG systems retrieve relevant documents from a knowledge base at inference time and condition the generation process on this retrieved context.
+
+The RAG architecture consists of three main components:
+1. A document corpus — a collection of texts that represent domain knowledge
+2. A retriever — typically a dense vector retrieval system using embeddings
+3. A generator — an LLM that conditions its output on the retrieved documents
+
+RAG was first introduced by Lewis et al. (2020) in the paper "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks." The key insight was that retrieval could provide factual grounding that pure generation models lack, significantly reducing hallucination.
+
+Types of RAG:
+- Naive RAG: Simple retrieve-then-generate pipeline
+- Advanced RAG: Adds reranking, query expansion, and iterative retrieval
+- Modular RAG: Pluggable components for retrieval, fusion, and generation
+- Agentic RAG: An LLM agent dynamically decides when and what to retrieve
+
+RAG is particularly powerful for enterprise applications where a company's proprietary documents need to be searchable and queryable without fine-tuning an LLM. It provides up-to-date knowledge without expensive model retraining.
+
+Common vector stores used in RAG:
+- Chroma: Lightweight, open-source, good for prototyping
+- Pinecone: Managed, cloud-native vector database
+- Weaviate: Open-source with hybrid search support
+- FAISS: Facebook's library for efficient similarity search
+
+Embedding models convert text chunks into high-dimensional vectors, capturing semantic meaning. Popular choices include OpenAI's text-embedding-3-small/large, Sentence Transformers, and Cohere Embed.
+
+Chunking strategy significantly affects RAG performance. Common approaches include fixed-size chunking (e.g., 512 tokens), sentence-aware chunking, and semantic chunking that groups related content.
+
+RAG evaluation metrics include: faithfulness (is the answer grounded in retrieved docs?), answer relevance (does the answer address the query?), and context precision/recall (was the right context retrieved?).
+
+RAG has become one of the most widely deployed LLM techniques in production systems, with adoption across legal, medical, financial, and software engineering domains.

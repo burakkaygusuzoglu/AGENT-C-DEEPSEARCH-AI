@@ -1,0 +1,41 @@
+Title: LangGraph — Building Stateful AI Agent Workflows
+Source: Research Corpus
+
+LangGraph is a library built on top of LangChain that enables developers to build stateful, multi-step AI agent workflows using a graph-based programming model. Developed by LangChain Inc., it was released in early 2024 and quickly became one of the most popular frameworks for production-grade agentic AI systems.
+
+Core Concepts:
+
+StateGraph: The central abstraction in LangGraph. A StateGraph defines a typed state schema (using TypedDict or Pydantic models) and a set of nodes and edges that transform this state.
+
+Nodes: Functions or runnables that take the current state as input and return a (partial) updated state. Each node performs a specific task such as calling an LLM, searching a database, or executing code.
+
+Edges: Connections between nodes. LangGraph supports three types:
+- Normal edges: Always go from node A to node B
+- Conditional edges: Use a routing function to decide the next node based on state
+- Cycles: Loops that allow agents to retry, reflect, or iterate
+
+State: A typed dictionary (TypedDict) that persists and flows through the entire graph. Every node reads from and writes to this shared state.
+
+LangGraph vs LangChain Chains:
+Traditional LangChain chains are linear sequences of operations. LangGraph introduces cycles, branching, and persistent state — making it suitable for complex, multi-step agentic workflows where the control flow depends on intermediate results.
+
+Common LangGraph Patterns:
+- ReAct Agent: Think → Act → Observe loop
+- Plan-and-Execute: Planner creates steps, executor runs them
+- Reflexion: Agent reflects on its outputs and iterates
+- Multi-agent: Supervisor delegates to specialized sub-agents
+
+LangGraph uses Python's type system for state schemas, enabling IDE autocompletion and runtime validation. The Annotated type from Python's typing module allows defining how state fields are merged across nodes.
+
+LangGraph Persistence:
+LangGraph supports checkpointing — saving the entire state at each step. This enables resumable workflows, human-in-the-loop interrupts, and time-travel debugging.
+
+The compile() method converts the StateGraph into an executable CompiledGraph. The invoke() method runs the full graph from START to END. The stream() method streams intermediate state updates in real time.
+
+LangGraph Studio is a visual debugging tool that shows the graph structure and lets developers step through executions interactively.
+
+Production Use Cases:
+- Customer support agents with escalation logic
+- Code generation and review pipelines
+- Research assistants with multi-source retrieval
+- Document processing with validation loops

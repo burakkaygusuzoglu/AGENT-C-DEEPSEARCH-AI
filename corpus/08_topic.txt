@@ -1,0 +1,30 @@
+Title: AI Research Document 08
+Source: Research Corpus
+
+Topic: AI Safety and Alignment — Core Concepts
+
+AI Safety is the field concerned with ensuring that AI systems behave safely, reliably, and in accordance with human values, especially as systems become more capable.
+
+Key Alignment Problems:
+
+Specification Problem: It is hard to formally specify what we want an AI system to do. Human values are complex, contextual, and sometimes contradictory. A reward function that seems correct can be gamed in unintended ways (specification gaming).
+
+Robustness: AI systems should perform safely outside their training distribution. Current ML systems can fail catastrophically on out-of-distribution inputs.
+
+Interpretability: We often cannot understand why a neural network made a specific decision. This 'black box' problem makes it hard to trust AI in high-stakes domains.
+
+RLHF (Reinforcement Learning from Human Feedback):
+A technique for aligning LLMs with human preferences. A reward model is trained on human preference comparisons, then used to fine-tune the LLM via reinforcement learning. Used by OpenAI (InstructGPT, GPT-4), Anthropic (Claude), and others.
+
+Constitutional AI (CAI):
+Anthropic's approach where the model critiques and revises its own outputs against a set of principles, reducing the need for human labeling of harmful content.
+
+Red-teaming:
+Deliberately trying to elicit harmful, biased, or dangerous behavior from AI systems to identify weaknesses before deployment.
+
+AI Risk Categories:
+- Misuse: Humans using AI for harmful purposes (deepfakes, disinformation, bioweapons)
+- Misalignment: AI pursuing goals that differ from human intentions
+- Structural: Concentration of power, economic disruption, erosion of privacy
+
+Anthropic, DeepMind, OpenAI, and academic labs have dedicated safety research teams. The field is growing rapidly as model capabilities increase.

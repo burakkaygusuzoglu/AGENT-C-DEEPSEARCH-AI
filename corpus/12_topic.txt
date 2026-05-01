@@ -1,0 +1,38 @@
+Title: AI Research Document 12
+Source: Research Corpus
+
+Topic: AI Ethics, Bias, and Fairness
+
+As AI systems are deployed in high-stakes domains, ensuring they are fair, unbiased, and ethical has become critical.
+
+Types of AI Bias:
+- Historical bias: Training data reflects past societal inequalities
+- Representation bias: Underrepresentation of certain groups in training data
+- Measurement bias: Proxies used for sensitive attributes introduce errors
+- Aggregation bias: One model for diverse populations ignores subgroup differences
+- Deployment bias: Model used in context different from training context
+
+Fairness Definitions (often mutually exclusive):
+- Demographic parity: Equal positive prediction rates across groups
+- Equalized odds: Equal true positive and false positive rates across groups
+- Individual fairness: Similar individuals should be treated similarly
+- Counterfactual fairness: Outcome same in counterfactual where sensitive attribute differs
+
+Bias Detection Tools:
+- IBM AI Fairness 360: Comprehensive bias detection and mitigation library
+- Microsoft Fairlearn: Fairness assessment and mitigation for scikit-learn
+- Google What-If Tool: Visual exploration of ML model behavior
+
+Mitigation Strategies:
+Pre-processing: Reweigh training data, augment underrepresented groups
+In-processing: Add fairness constraints to training objective
+Post-processing: Adjust decision thresholds per group
+
+LLM-Specific Concerns:
+- Stereotyping: LLMs can produce biased text about demographic groups
+- Toxicity: Models can generate harmful, offensive content
+- Privacy: LLMs may memorize and reproduce training data (PII leakage)
+- Disinformation: LLMs can generate convincing false content at scale
+
+Regulatory Landscape:
+EU AI Act (2024): Risk-based framework. High-risk AI (hiring, lending, medical) requires conformity assessment, transparency, and human oversight. Prohibited uses include real-time biometric surveillance.

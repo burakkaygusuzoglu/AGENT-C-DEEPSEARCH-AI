@@ -1,0 +1,34 @@
+Title: AI Research Document 06
+Source: Research Corpus
+
+Topic: Prompt Engineering Best Practices
+
+Prompt engineering is the practice of designing inputs to LLMs to elicit desired outputs. As models become more capable, prompt engineering remains essential for reliability and performance.
+
+Key Techniques:
+
+Zero-Shot Prompting: Directly asking the model to perform a task without examples. Works well for simple tasks with strong models.
+
+Few-Shot Prompting: Providing 2-10 examples of input-output pairs before the actual query. Significantly improves performance on complex or specialized tasks.
+
+Chain-of-Thought (CoT): Asking the model to show its reasoning step by step. 'Let's think step by step' dramatically improves performance on mathematical and logical tasks.
+
+System Prompts: Instructions given to the model that set its persona, capabilities, and constraints. Well-crafted system prompts are crucial for production agents.
+
+Role Prompting: Assigning the model a persona ('You are an expert Python developer...') improves domain-specific performance.
+
+Structured Output: Asking the model to respond in JSON or XML format enables reliable parsing. Modern models support JSON mode and tool use for structured outputs.
+
+Negative Constraints: Telling the model what NOT to do ('Do not include code comments', 'Never make up citations').
+
+Prompt Chaining: Breaking complex tasks into a sequence of simpler prompts, where each output feeds the next input.
+
+ReAct Prompting: Providing a Thought/Action/Observation template for tool-using agents.
+
+Common Mistakes:
+- Vague instructions that leave too much ambiguity
+- Asking for multiple things in one prompt
+- Not specifying output format
+- Inconsistent examples in few-shot prompts
+
+Prompt injection is a security concern where malicious user input overrides system instructions. Mitigation includes input sanitization and separate trust levels.

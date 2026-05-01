@@ -1,0 +1,21 @@
+Title: AI Research Document 04
+Source: Research Corpus
+
+Topic: Transformer Architecture and Attention Mechanisms
+
+The Transformer architecture, introduced in 'Attention Is All You Need' (Vaswani et al., 2017), revolutionized NLP by replacing recurrence with self-attention. The core innovation is the scaled dot-product attention mechanism:
+
+Attention(Q,K,V) = softmax(QK^T / sqrt(d_k)) * V
+
+Where Q (queries), K (keys), and V (values) are linear projections of the input embeddings. Multi-head attention runs h parallel attention functions, allowing the model to attend to information from different representation subspaces.
+
+The Transformer encoder-decoder architecture consists of:
+- Encoder: Stack of N layers, each with multi-head self-attention + feed-forward network
+- Decoder: Stack of N layers with masked self-attention, cross-attention, and feed-forward
+- Positional encoding: Sine/cosine functions added to embeddings to inject sequence order
+
+BERT (Bidirectional Encoder Representations from Transformers) uses only the encoder with masked language modeling pretraining. GPT uses only the decoder with autoregressive language modeling. T5 and BART use the full encoder-decoder.
+
+Scaling laws (Kaplan et al., 2020) showed that model performance improves predictably as a power law with compute, data, and model size. This motivated the development of increasingly large models.
+
+Modern LLMs like GPT-4, Claude 3, and Gemini use grouped query attention (GQA), rotary positional embeddings (RoPE), and Flash Attention for efficiency. Context windows have expanded from 512 tokens (BERT) to over 1 million tokens in some models.

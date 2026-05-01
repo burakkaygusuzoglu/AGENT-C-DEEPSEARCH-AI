@@ -1,0 +1,56 @@
+Title: LLM-Powered AI Agents — Architecture and Design Patterns
+Source: Research Corpus
+
+An AI agent is an LLM-based system that can autonomously perceive its environment, reason about a goal, select and use tools, and execute multi-step plans to accomplish tasks. Unlike a simple chatbot that responds to a single prompt, an agent operates in a loop: think → act → observe → repeat.
+
+Core Components of an LLM Agent:
+1. Brain (LLM): The reasoning engine that plans, decides, and generates text
+2. Memory: Short-term (context window) and long-term (vector store, external DB)
+3. Tools: Functions the agent can call (web search, code execution, file I/O, APIs)
+4. Orchestration: The control loop that coordinates brain, memory, and tools
+
+Agent Reasoning Frameworks:
+
+ReAct (Reasoning + Acting):
+Introduced by Yao et al. (2022). The agent interleaves reasoning traces ("Thought") with actions ("Action") and observations ("Observation"). This makes the agent's decision process transparent and debuggable.
+
+Chain-of-Thought (CoT):
+The LLM is prompted to reason step-by-step before giving a final answer. Zero-shot CoT adds "Let's think step by step." Few-shot CoT provides worked examples.
+
+Tree-of-Thought (ToT):
+The agent explores multiple reasoning branches simultaneously and backtracks from dead ends. Useful for complex planning tasks.
+
+Reflexion:
+The agent critiques its own outputs, identifies mistakes, and iterates. Improves performance on coding and reasoning tasks without fine-tuning.
+
+Plan-and-Execute:
+A planner LLM generates a high-level task list. An executor LLM carries out each step. This separation improves performance on long-horizon tasks.
+
+Tool Use in Agents:
+Modern LLMs (GPT-4, Claude 3, Gemini) can be given a list of tool definitions (function name, description, parameters as JSON Schema). The LLM generates structured tool call objects that the orchestration layer executes.
+
+Common Agent Tools:
+- Web search (Tavily, SerpAPI, Brave Search)
+- Code execution (Python REPL, E2B sandbox)
+- File operations (read, write, list)
+- Database queries (SQL, vector search)
+- External APIs (weather, calendar, email)
+
+Memory Types:
+- Sensory: Raw input (images, text)
+- Short-term: Active context window (~128K tokens for modern LLMs)
+- Long-term: External storage (vector DB for semantic retrieval, key-value for facts)
+- Episodic: Memory of past interactions (useful for personalization)
+
+Multi-Agent Systems:
+Multiple specialized agents collaborate to solve complex tasks. Patterns include:
+- Supervisor/Worker: One orchestrator delegates to specialized subagents
+- Peer-to-peer: Agents communicate directly
+- Hierarchical: Multiple layers of supervision
+
+Agent Evaluation Challenges:
+- Non-determinism: Same input can yield different tool call sequences
+- Long-horizon tasks: Hard to define intermediate success metrics
+- Safety: Agents can take irreversible real-world actions
+
+Frameworks: LangGraph, CrewAI, AutoGen, OpenAI Swarm, Pydantic AI, Haystack

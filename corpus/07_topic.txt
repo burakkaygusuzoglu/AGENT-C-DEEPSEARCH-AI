@@ -1,0 +1,35 @@
+Title: AI Research Document 07
+Source: Research Corpus
+
+Topic: Fine-Tuning vs RAG vs Prompting — When to Use Each
+
+Three major strategies exist for adapting LLMs to specific domains:
+
+1. Prompting (In-Context Learning)
+How it works: Provide instructions and examples in the prompt
+When to use: Task is well-defined, few-shot examples cover the space, no proprietary data
+Pros: No training required, fastest to iterate, model always up-to-date
+Cons: Context window limits, expensive at scale, no persistent learning
+
+2. RAG (Retrieval-Augmented Generation)
+How it works: Retrieve relevant documents at query time and inject into prompt
+When to use: Large proprietary knowledge base, knowledge changes frequently, need citations
+Pros: Knowledge is updatable without retraining, transparent (can show sources), cost-effective
+Cons: Retrieval quality limits answer quality, adds latency, complex to optimize
+
+3. Fine-Tuning
+How it works: Further train the model on domain-specific data to adjust weights
+When to use: Specific output format/style needed, latency-sensitive applications, specialized vocabulary
+Pros: Model 'learns' the task deeply, lower inference cost per token, no retrieval needed
+Cons: Expensive and slow to train, knowledge can go stale, risk of catastrophic forgetting
+
+Hybrid Approaches:
+- Fine-tune + RAG: Fine-tune for style/format, RAG for knowledge grounding
+- RAFT (RAG-Aware Fine-Tuning): Fine-tune specifically on RAG-formatted examples
+- Prompt caching: Cache system prompts to reduce cost
+
+Decision Framework:
+- Static, well-known knowledge → Prompting
+- Dynamic, large, proprietary knowledge → RAG  
+- Specific behavior/format that is hard to prompt → Fine-tuning
+- Both dynamic knowledge AND specialized behavior → Fine-tuning + RAG

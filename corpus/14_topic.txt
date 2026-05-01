@@ -1,0 +1,34 @@
+Title: AI Research Document 14
+Source: Research Corpus
+
+Topic: AI for Scientific Discovery
+
+AI is accelerating scientific discovery across biology, chemistry, physics, and materials science.
+
+AlphaFold (DeepMind):
+AlphaFold 2 (2020) achieved near-experimental accuracy in protein structure prediction, solving a 50-year grand challenge in biology. AlphaFold 3 (2024) extended to DNA, RNA, and small molecules. The AlphaFold Protein Structure Database contains predictions for 200M+ proteins.
+
+Drug Discovery AI:
+- Target identification: AI analyzes genomics data to find disease targets
+- Molecule generation: Generative models (VAEs, diffusion) design new drug candidates
+- ADMET prediction: Predict drug absorption, distribution, metabolism, excretion, toxicity
+- Clinical trial optimization: AI matches patients to trials, predicts trial outcomes
+
+Materials Science:
+- Graph Neural Networks predict material properties from crystal structure
+- Generative models design new materials with desired properties (e.g., better batteries)
+- High-throughput screening: AI prioritizes which compounds to synthesize and test
+
+Climate and Earth Science:
+- GraphCast (Google): AI weather model, more accurate than traditional physics models
+- Climate model emulators: Neural networks approximate expensive climate simulations
+- Satellite imagery analysis: Detect deforestation, monitor ice sheets
+
+Mathematics:
+- AlphaProof and AlphaGeometry (DeepMind, 2024): Silver-medal level on International Math Olympiad problems
+- LLMs assist with proof discovery and formalization
+
+Key Techniques:
+- Equivariant neural networks: Respect physical symmetries (rotation, translation)
+- Physics-Informed Neural Networks (PINNs): Incorporate physical laws as constraints
+- Foundation models for science: Large pretrained models fine-tuned on scientific data

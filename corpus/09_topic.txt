@@ -1,0 +1,35 @@
+Title: AI Research Document 09
+Source: Research Corpus
+
+Topic: Multimodal AI Models — Vision, Audio, and Beyond
+
+Multimodal AI models can process and generate multiple types of data — text, images, audio, video, and code — within a unified architecture.
+
+Key Multimodal Models (as of 2024-2025):
+- GPT-4o: OpenAI's omni model handling text, images, and audio natively
+- Claude 3.5 Sonnet: Anthropic's model with strong vision capabilities
+- Gemini 1.5 Pro: Google's model with 1M context and video understanding
+- LLaVA: Open-source visual language model
+- Whisper: OpenAI's speech recognition model
+
+Vision-Language Models (VLMs):
+Combine a vision encoder (like CLIP or ViT) with a language decoder (LLM). The vision encoder converts images to embedding vectors that the LLM can process alongside text tokens.
+
+CLIP (Contrastive Language-Image Pretraining):
+Trained on 400M image-text pairs using contrastive learning. Learns a shared embedding space for images and text. Foundation for many VLMs.
+
+Multimodal RAG:
+Extends RAG to handle images, tables, charts, and documents alongside text. Approaches include:
+- Storing image captions and using text retrieval
+- Using multimodal embeddings (CLIP) for direct image retrieval
+- Extracting text from images (OCR) before embedding
+
+Text-to-Image Generation:
+Diffusion models (DALL-E 3, Stable Diffusion, Midjourney) generate images from text descriptions. Diffusion iteratively denoises a random noise tensor conditioned on text embeddings.
+
+Audio Models:
+- ASR (Automatic Speech Recognition): Whisper, wav2vec
+- TTS (Text-to-Speech): ElevenLabs, Bark, Coqui
+- Music generation: Suno, Udio
+
+Multimodal agents can see screenshots, interact with UIs, read documents, and process audio — enabling computer use and robotic control applications.

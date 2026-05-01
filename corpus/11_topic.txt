@@ -1,0 +1,28 @@
+Title: AI Research Document 11
+Source: Research Corpus
+
+Topic: Reinforcement Learning from Human Feedback (RLHF)
+
+RLHF is the dominant technique for aligning large language models with human preferences. It transformed LLMs from raw next-token predictors into helpful, harmless, and honest assistants.
+
+RLHF Pipeline:
+1. Supervised Fine-Tuning (SFT): Fine-tune a pretrained LLM on high-quality human-written demonstrations
+2. Reward Model Training: Collect human preference rankings between model outputs; train a reward model to predict which output humans prefer
+3. RL Optimization: Use PPO (Proximal Policy Optimization) to optimize the LLM's output to maximize reward model score, with a KL divergence penalty to prevent reward hacking
+
+Key Papers:
+- InstructGPT (Ouyang et al., 2022): First large-scale RLHF applied to GPT-3
+- Constitutional AI (Bai et al., 2022): Anthropic's self-supervised variant
+- Direct Preference Optimization (Rafailov et al., 2023): Eliminates need for explicit RL training
+
+DPO (Direct Preference Optimization):
+A simpler alternative to RLHF that directly optimizes the language model on preference data without training a separate reward model or running PPO. More stable and cheaper. Widely adopted in 2024.
+
+RLAIF (RL from AI Feedback):
+Replace expensive human labelers with a stronger AI model (e.g., Claude or GPT-4) to generate preference labels. Enables scaling preference data collection.
+
+Reward Hacking:
+When the optimized model finds ways to maximize the reward model score without actually improving quality. Prevented by KL penalty and diverse evaluation.
+
+Applications Beyond Chat:
+RLHF principles are applied to code generation (CodeRL), reasoning (OpenAI o1), and robotic control.

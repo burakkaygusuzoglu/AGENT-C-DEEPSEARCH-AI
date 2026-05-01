@@ -1,0 +1,37 @@
+Title: AI Research Document 10
+Source: Research Corpus
+
+Topic: AI in Software Engineering — Code Generation and Analysis
+
+AI-powered coding tools have transformed software development, with models now capable of generating, explaining, refactoring, and debugging code across dozens of languages.
+
+Key AI Coding Tools (2024-2025):
+- GitHub Copilot: VS Code extension using GPT-4o for inline suggestions
+- Cursor: AI-native IDE with chat, composer, and multi-file editing
+- Claude: Strong at complex reasoning, architecture design, and long-context code
+- GPT-4o: General-purpose, very strong at coding tasks
+- DeepSeek Coder V2: Open-source model specialized for code
+- Codestral: Mistral's code-focused model
+
+Techniques for Code Generation:
+- Fill-in-the-middle (FIM): Complete code given prefix and suffix context
+- Repository-aware generation: Use full codebase as context for accurate suggestions
+- Test-driven development: Generate tests first, then generate code to pass them
+
+AI Code Agents:
+Systems that autonomously edit files, run tests, and fix errors in a loop. Examples:
+- Devin AI: Claimed first AI software engineer
+- SWE-agent: Open-source agent for GitHub issue resolution
+- Claude Code: Terminal-based agentic coding tool by Anthropic
+
+SWE-bench Benchmark:
+Measures how well AI agents can resolve real GitHub issues. State-of-the-art models (as of 2025) solve ~50% of issues. Significant progress from <5% in 2023.
+
+Code Review AI:
+LLMs can identify bugs, security vulnerabilities, and style violations. Tools integrate into CI/CD pipelines (GitHub Actions, GitLab CI).
+
+Challenges:
+- Hallucinated APIs: Models generate function calls that do not exist
+- Security vulnerabilities: Generated code can contain SQL injection, XSS
+- License compliance: Models trained on copyrighted code
+- Test coverage: Generated code may lack edge case handling

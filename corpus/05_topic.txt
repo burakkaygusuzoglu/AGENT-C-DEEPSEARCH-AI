@@ -1,0 +1,32 @@
+Title: AI Research Document 05
+Source: Research Corpus
+
+Topic: Vector Databases and Embedding Models
+
+Vector databases store and index high-dimensional numerical vectors (embeddings) and support efficient similarity search. They are fundamental to RAG systems, semantic search, and recommendation engines.
+
+How Embeddings Work:
+Text is converted to a fixed-size vector (e.g., 1536 dimensions for OpenAI ada-002) that captures semantic meaning. Texts with similar meaning have vectors that are close in high-dimensional space, measured by cosine similarity or dot product.
+
+Popular Vector Databases:
+- Chroma: Open-source, Python-native, good for prototypes and small to medium datasets
+- Pinecone: Fully managed, serverless, scales to billions of vectors
+- Weaviate: Open-source, supports hybrid search (dense + sparse)
+- Qdrant: Open-source, Rust-based, very fast, supports filtering
+- FAISS: Library (not a full DB), optimal for local experimentation
+- pgvector: PostgreSQL extension for vector storage
+
+Similarity Search Algorithms:
+- Exact search (brute-force): O(n) per query, accurate but slow for large datasets
+- HNSW (Hierarchical Navigable Small World): Graph-based ANN, fast and accurate
+- IVF (Inverted File Index): Clusters vectors, searches only nearest clusters
+- PQ (Product Quantization): Compresses vectors for memory efficiency
+
+Embedding Models:
+- OpenAI text-embedding-3-small: 1536 dims, fast, cheap
+- OpenAI text-embedding-3-large: 3072 dims, best quality
+- Sentence-BERT: Open-source, many variants available on HuggingFace
+- Cohere Embed v3: Strong multilingual support
+- E5 and BGE models: Open-source, competitive with commercial models
+
+Metadata filtering in vector search allows combining semantic similarity with structured filters (e.g., 'find similar documents but only from 2024').
