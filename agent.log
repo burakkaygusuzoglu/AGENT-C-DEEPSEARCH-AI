@@ -1,0 +1,74 @@
+2026-05-01 16:57:22,766 [INFO] Loaded 4 chunks from 01_rag_overview.txt
+2026-05-01 16:57:22,767 [INFO] Loaded 4 chunks from 02_langgraph.txt
+2026-05-01 16:57:22,768 [INFO] Loaded 5 chunks from 03_llm_agents.txt
+2026-05-01 16:57:22,768 [INFO] Loaded 3 chunks from 04_topic.txt
+2026-05-01 16:57:22,769 [INFO] Loaded 3 chunks from 05_topic.txt
+2026-05-01 16:57:22,769 [INFO] Loaded 3 chunks from 06_topic.txt
+2026-05-01 16:57:22,769 [INFO] Loaded 3 chunks from 07_topic.txt
+2026-05-01 16:57:22,770 [INFO] Loaded 3 chunks from 08_topic.txt
+2026-05-01 16:57:22,770 [INFO] Loaded 3 chunks from 09_topic.txt
+2026-05-01 16:57:22,770 [INFO] Loaded 3 chunks from 10_topic.txt
+2026-05-01 16:57:22,771 [INFO] Loaded 3 chunks from 11_topic.txt
+2026-05-01 16:57:22,772 [INFO] Loaded 3 chunks from 12_topic.txt
+2026-05-01 16:57:22,772 [INFO] Loaded 3 chunks from 13_topic.txt
+2026-05-01 16:57:22,772 [INFO] Loaded 3 chunks from 14_topic.txt
+2026-05-01 16:57:22,773 [INFO] Loaded 3 chunks from 15_topic.txt
+2026-05-01 16:57:26,736 [ERROR] Ingest failed: Unauthorized
+Traceback (most recent call last):
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\AGENT-C_A-\main.py", line 97, in main
+    ingest(force=True, verbose=True)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\AGENT-C_A-\src\rag_pipeline.py", line 137, in ingest
+    vectorstore = Chroma.from_documents(
+        documents=all_chunks,
+    ...<2 lines>...
+        persist_directory=str(CHROMA_DIR),
+    )
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\venv\Lib\site-packages\langchain_chroma\vectorstores.py", line 1431, in from_documents
+    return cls.from_texts(
+           ~~~~~~~~~~~~~~^
+        texts=texts,
+        ^^^^^^^^^^^^
+    ...<16 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\venv\Lib\site-packages\langchain_chroma\vectorstores.py", line 1365, in from_texts
+    chroma_collection.add_texts(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        texts=batch[3] if batch[3] else [],
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        metadatas=batch[2] if batch[2] else None,  # type: ignore[arg-type]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        ids=batch[0],
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\venv\Lib\site-packages\langchain_chroma\vectorstores.py", line 627, in add_texts
+    embeddings = self._embedding_function.embed_documents(texts)
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\venv\Lib\site-packages\langchain_openai\embeddings\base.py", line 751, in embed_documents
+    return self._get_len_safe_embeddings(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        texts, engine=engine, chunk_size=chunk_size, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\venv\Lib\site-packages\langchain_openai\embeddings\base.py", line 618, in _get_len_safe_embeddings
+    response = self.client.create(input=batch_tokens, **client_kwargs)
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\venv\Lib\site-packages\openai\resources\embeddings.py", line 136, in create
+    return self._post(
+           ~~~~~~~~~~^
+        "/embeddings",
+        ^^^^^^^^^^^^^^
+    ...<8 lines>...
+        cast_to=CreateEmbeddingResponse,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\venv\Lib\site-packages\openai\_base_client.py", line 1314, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ismai\OneDrive\Masaüstü\Benim Projelerim\devam eden\Ai project\venv\Lib\site-packages\openai\_base_client.py", line 1087, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.AuthenticationError: Unauthorized
