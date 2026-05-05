@@ -1,0 +1,108 @@
+Title: LinkedIn Profile Optimization for AI/Tech Students and Early-Career Professionals
+Source: Career Intelligence Corpus
+
+LinkedIn is the primary professional network for tech careers. Recruiters actively source candidates on LinkedIn, often reaching out directly to profiles that match their criteria. A complete, optimized LinkedIn profile works as a passive job-search engine running 24/7.
+
+LinkedIn Search Algorithm Basics:
+LinkedIn ranks profiles in recruiter searches based on keyword relevance, profile completeness (All-Star status), network connections, and activity. Optimizing for these signals makes your profile discoverable.
+
+1. Profile Photo & Banner
+
+- Photo: professional, well-lit, clear face. Not a group photo, filter-heavy image, or casual selfie.
+- Banner: customize it — use a simple gradient or tech-themed image. Canva has free templates.
+  A custom banner is noticed; the default blue one is not.
+
+2. Headline (Critical — 220 characters)
+
+The headline appears next to your name in every search result. It is the most keyword-rich field.
+
+Templates for students:
+  "Computer Engineering Student | AI Engineer Intern Seeking | Python · LangChain · PyTorch · RAG"
+  "AI/ML Enthusiast | Building RAG Systems & Agents | Open to 2025/2026 Internships | LangGraph · FastAPI"
+
+Include:
+- Your current status (student/junior developer)
+- Your target role
+- 3-5 key technologies
+- "Open to opportunities" or "Seeking internship"
+
+3. About Section (2,000 characters max)
+
+Write in first person. Structure:
+  Paragraph 1: Who you are + current status.
+  Paragraph 2: What you build / your focus area + 2-3 concrete examples.
+  Paragraph 3: What you're looking for + call to action.
+
+End with a skills keyword list (helps LinkedIn's algorithm):
+  Skills: Python, LangChain, LangGraph, FastAPI, RAG, ChromaDB, Docker, PyTorch, SQL, Machine Learning
+
+4. Experience Section
+
+Include:
+- Internships (even unpaid or short-term)
+- Research assistant positions
+- Part-time developer roles
+- Freelance/contract projects
+
+Format each entry with 3-5 bullet points starting with action verbs.
+Add media to entries (GitHub links, demo videos, slide decks) — this increases profile views.
+
+5. Education Section
+
+Add:
+- Your university and degree (Expected graduation date)
+- GPA (if strong)
+- Relevant courses: AI, Machine Learning, Data Structures, Algorithms, Computer Vision
+- Extracurricular activities, academic societies, hackathon participations
+
+6. Skills Section (Top 5 Matter Most)
+
+Add all relevant skills. Ask connections to endorse your top skills.
+LinkedIn displays your top 3 skills prominently — ensure these are your strongest and most relevant.
+
+For AI/ML roles, prioritize:
+  Python, Machine Learning, Deep Learning, PyTorch, LangChain, SQL, Docker, FastAPI, NLP
+
+7. Featured Section
+
+Link your best content here:
+- GitHub profile or specific repositories
+- Personal portfolio website
+- Published articles (Medium, Dev.to, Substack)
+- YouTube demos of your projects
+- Hackathon certificates
+
+8. Recommendations
+
+Ask professors, project partners, or internship managers to write recommendations.
+Profiles with 2+ recommendations appear significantly more credible.
+Write a recommendation for someone first — they often reciprocate.
+
+9. Activity & Content
+
+Post 2-4 times per month:
+- Project demos with short descriptions
+- Technical lessons you've learned
+- Articles about technologies you're studying
+- Engagement with other people's posts (comments > likes)
+
+Creators who post consistently get significantly more profile views and recruiter messages.
+
+10. Open to Work
+
+Enable "Open to Work" (either visible to all or recruiters only).
+Fill in: Job titles you want, locations (include "Remote"), start date (immediate or 3 months).
+This makes you appear in recruiter searches filtering by open-to-work candidates.
+
+11. Connections Strategy
+
+Target 500+ connections (LinkedIn shows "500+" as a social proof signal):
+- Connect with classmates, professors, and alumni
+- Connect with speakers at events you attend
+- Send personalized notes when connecting with people you don't know
+- Connect with recruiters at companies you're targeting
+
+12. LinkedIn Premium (Optional)
+
+InMail credits and recruiter search visibility. For active job seekers,
+the Premium Career plan (~$40/month) can accelerate the process — but a complete free profile is effective too.

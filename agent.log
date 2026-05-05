@@ -1,3 +1,11 @@
 2026-05-01 18:35:53,607 [INFO] Router decision: off_topic | query='corpusu tara'
 2026-05-01 18:35:53,608 [INFO] Off-topic query rejected: 'corpusu tara'
 2026-05-01 18:35:53,609 [INFO] Query logged | route=off_topic  |  1578 ms | success=True
+2026-05-05 13:51:14,689 [INFO] Router | intent=interview_prep  | route=rag_only   | query='Prepare me for a junior PYTHON/AI internship technical interview'
+2026-05-05 13:51:14,975 [INFO] RAG node: query='Prepare me for a junior PYTHON/AI internship technical interview'
+2026-05-05 13:51:16,186 [INFO] Synthesizer | intent=interview_prep | query='Prepare me for a junior PYTHON/AI internship technical interview'
+2026-05-05 13:51:21,951 [INFO] Query logged | route=rag_only   |  9766 ms | success=True
+2026-05-05 14:25:52,240 [INFO] Router | intent=career_plan     | route=both       | query='check the recent updates, how can ı be a machine engıneer with the newest informatıons'
+2026-05-05 14:25:52,530 [INFO] Both node: query='check the recent updates, how can ı be a machine engıneer with the newest informatıons'
+2026-05-05 14:26:04,495 [INFO] Synthesizer | intent=career_plan | query='check the recent updates, how can ı be a machine engıneer with the newest informatıons'
+2026-05-05 14:26:11,204 [INFO] Query logged | route=both       | 21156 ms | success=True

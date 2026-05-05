@@ -1,0 +1,118 @@
+Title: Technical Interview Preparation for AI/ML and Software Engineering Roles
+Source: Career Intelligence Corpus
+
+Technical interviews for AI/ML and software engineering roles typically consist of several stages: coding challenges, system design, ML concept questions, and project deep-dives. Preparation strategy matters as much as raw knowledge.
+
+Interview Stages by Role:
+
+For Software Engineering roles:
+  1. Online Assessment (OA): LeetCode-style algorithmic problems (1-2 hours, timed)
+  2. Phone Screen: 1-2 coding problems over video call (45-60 min)
+  3. Technical Interview (Onsite/Virtual): 4-6 rounds including coding, system design, behavioral
+
+For ML / AI Engineering roles:
+  1. Online Assessment or take-home ML project
+  2. ML concepts + coding (Python + ML libraries)
+  3. System design (ML system design — different from software system design)
+  4. Research discussion or paper walkthrough (senior roles)
+
+Section 1: Data Structures & Algorithms
+
+Topics to master (in order of importance for most roles):
+  - Arrays and Strings: two pointers, sliding window, prefix sums
+  - Hash Maps / Hash Sets: frequency counting, anagrams, grouping
+  - Trees and Binary Trees: DFS, BFS, tree traversal, BST operations
+  - Graphs: BFS, DFS, shortest path (Dijkstra), topological sort
+  - Linked Lists: reversal, cycle detection, merge
+  - Dynamic Programming: memoization, tabulation, classic problems (knapsack, LCS, LIS)
+  - Sorting & Searching: quick sort, merge sort, binary search variants
+  - Heaps / Priority Queue: top-K problems, merge K sorted lists
+  - Recursion & Backtracking: permutations, combinations, N-queens
+
+LeetCode strategy:
+  - Target: 75-150 problems (NeetCode 150 is an excellent curated list)
+  - Focus on Easy→Medium first; Hard only if targeting top-tier companies (FAANG)
+  - Practice timed: simulate real interview pressure
+  - Review patterns, not just solutions: sliding window, two pointers, BFS/DFS templates
+
+Section 2: Python Proficiency (for AI/ML roles)
+
+You will be expected to write clean Python quickly:
+  - List comprehensions, generators, lambda, map/filter
+  - Class definition, inheritance, dunder methods
+  - File I/O, context managers (with statement)
+  - Common stdlib: collections (Counter, defaultdict, deque), itertools, functools
+  - Error handling: try/except, custom exceptions
+
+Section 3: ML Concepts Interview Questions
+
+Interviewers at ML roles will ask conceptual questions. Common topics:
+
+Bias-Variance Trade-off:
+  High bias → underfitting; high variance → overfitting.
+  Fix underfitting: larger model, more features, less regularization.
+  Fix overfitting: more data, dropout, regularization (L1/L2), early stopping.
+
+Evaluation Metrics:
+  - Classification: accuracy, precision, recall, F1-score, ROC AUC.
+  - Regression: MAE, MSE, RMSE, R².
+  - When to use which: imbalanced classes → F1 or AUC, not accuracy.
+
+Common Model Comparison Questions:
+  - Random Forest vs Gradient Boosting (XGBoost): both ensembles; RF = parallel bagging; XGBoost = sequential boosting.
+  - LSTM vs Transformer: LSTM sequential; Transformer parallelizable via self-attention, better for long-range dependencies.
+  - Batch norm vs Layer norm: batch operates across batch dimension; layer operates per sample (preferred in LLMs).
+
+LLM Questions:
+  - What is attention? How does self-attention work?
+  - What is the difference between fine-tuning, RAG, and prompt engineering?
+  - What is LoRA and why is it efficient?
+  - How would you evaluate an LLM application?
+
+Section 4: ML System Design
+
+ML System Design is its own discipline. Practice designing:
+  1. Recommendation System (Netflix, YouTube)
+  2. Search Ranking System (Google, LinkedIn)
+  3. Fraud Detection System
+  4. Real-time Content Moderation
+  5. LLM-powered Chatbot at Scale
+
+Framework for ML System Design answers:
+  1. Clarify requirements (what's the business goal? latency constraints? scale?)
+  2. Define the ML task (classification? ranking? generation?)
+  3. Data collection and labeling strategy
+  4. Feature engineering
+  5. Model selection and training pipeline
+  6. Offline evaluation (metrics)
+  7. Serving infrastructure (batch vs real-time)
+  8. Online evaluation and monitoring (A/B testing, data drift)
+  9. Failure modes and mitigations
+
+Section 5: Project Deep-Dive Preparation
+
+Expect: "Walk me through a project you're proud of."
+
+Prepare a 3-minute narrative for each pinned project:
+  - What problem does it solve?
+  - What was your specific contribution?
+  - What was the hardest technical challenge?
+  - How did you validate results?
+  - What would you do differently now?
+
+Use the STAR format for answering: Situation → Task → Action → Result.
+
+Section 6: Code Quality in Interviews
+
+Interviewers notice:
+  - Variable naming (use descriptive names, not x, y, z)
+  - Edge case handling (empty input, None, boundary values)
+  - Time/space complexity awareness (state it out loud)
+  - Asking clarifying questions before coding
+  - Testing your solution with examples
+
+Common Interview Mistakes to Avoid:
+  - Jumping straight into coding without thinking aloud
+  - Ignoring edge cases
+  - Not knowing your own project deeply
+  - Freezing instead of saying "I'm not sure, but I'd approach it by..."

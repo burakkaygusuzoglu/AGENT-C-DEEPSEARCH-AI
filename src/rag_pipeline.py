@@ -7,10 +7,6 @@ RAG Pipeline — Dynamic Self-Growing Corpus
 - Smart ingest: tracks which files were already processed
 """
 
-"""
-RAG Pipeline — Dynamic Self-Growing Corpus
-"""
-
 import os
 import hashlib
 from pathlib import Path

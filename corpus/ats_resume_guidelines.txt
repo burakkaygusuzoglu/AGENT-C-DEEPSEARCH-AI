@@ -1,0 +1,89 @@
+Title: ATS-Optimized Resume Guidelines for Tech & AI Roles
+Source: Career Intelligence Corpus
+
+ATS (Applicant Tracking System) is software used by companies to automatically parse, filter, and rank resumes before a human reviewer sees them. A resume that is not ATS-compatible may be rejected before anyone reads it. These guidelines focus on tech and AI/software engineering roles.
+
+Why ATS Matters:
+Large companies receive hundreds or thousands of applications per role. ATS filters based on keyword matching, section detection, and formatting compatibility. Estimates suggest 75% of resumes are rejected by ATS before reaching a recruiter.
+
+1. Formatting Rules (Critical)
+
+DO:
+- Use a clean, single-column layout with standard section headings.
+- Save and submit as PDF (preserves formatting) OR .docx if specifically requested.
+- Use standard fonts: Arial, Calibri, Times New Roman, Georgia (10-12pt).
+- Keep margins between 0.5" and 1".
+- Use standard section titles: Experience, Education, Skills, Projects, Certifications.
+
+DO NOT:
+- Use tables, text boxes, headers/footers, or multi-column layouts (ATS can't parse them).
+- Use graphics, icons, or charts.
+- Put important information in headers or footers.
+- Use creative section names like "My Journey" or "Superpowers."
+
+2. Keyword Strategy
+
+ATS ranks your resume by how well it matches the job description keywords.
+
+Action steps:
+- Copy the job description and identify the top technical skills mentioned (Python, Docker, LangChain, etc.)
+- Mirror those exact terms in your resume (if you have the skill).
+- Include both abbreviations and full forms: "NLP" and "Natural Language Processing."
+- Add a dedicated "Technical Skills" section listing tools, languages, and frameworks.
+
+3. Experience Section
+
+Format each role as:
+  [Job Title] | [Company Name] | [Month Year – Month Year]
+  • Action verb + what you did + measurable result
+  • Action verb + technology used + outcome achieved
+
+Strong bullet examples:
+  ✓ "Built a RAG pipeline using LangChain and ChromaDB, reducing manual research time by 60%."
+  ✓ "Fine-tuned a BERT model on 10K labeled samples, achieving 94% F1-score on NER task."
+  ✗ "Worked on AI projects and helped the team."
+
+Use strong action verbs: Built, Developed, Deployed, Designed, Optimized, Automated, Reduced, Increased.
+
+4. Projects Section (Crucial for Students)
+
+Students with limited experience must emphasize projects heavily.
+
+Format:
+  [Project Name] | [Tech Stack] | [GitHub Link]
+  • 2-3 bullets: what the project does + your contribution + result or scale.
+
+Include:
+- Personal projects from GitHub
+- University capstone projects
+- Hackathon projects
+- Open-source contributions
+
+5. Skills Section
+
+Group by category for ATS clarity:
+  Languages: Python, SQL, JavaScript
+  Frameworks: LangChain, FastAPI, PyTorch, LangGraph
+  Tools: Docker, Git, MLflow, ChromaDB
+  Cloud: AWS (S3, Lambda), GCP (BigQuery)
+  Concepts: RAG, Fine-tuning, Vector Search, CI/CD
+
+6. Education Section
+
+  [Degree] in [Field] | [University Name] | [Expected: Month Year]
+  • GPA (if above 3.5/4.0 or equivalent)
+  • Relevant coursework (Machine Learning, Data Structures, Algorithms)
+  • Academic honors
+
+7. One-Page Rule (For Students and Early-Career)
+
+Keep it to one page until you have 5+ years of experience. Recruiters spend 7 seconds on average on an initial scan. Every line must earn its place.
+
+8. Tailoring
+
+Never submit the same generic resume everywhere. Keep a master resume with all experience, then tailor for each application by adjusting keywords and reordering bullet points to match the job description.
+
+Tools That Help:
+- Jobscan.co: compares your resume to a JD and gives ATS match score.
+- Resume.io or Overleaf (LaTeX templates): clean ATS-compatible formats.
+- Grammarly: proofreading.

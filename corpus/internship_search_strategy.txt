@@ -1,0 +1,101 @@
+Title: Internship Search Strategy for AI/Software Students
+Source: Career Intelligence Corpus
+
+Landing a competitive AI/software internship requires strategy, not just a good resume. The process is competitive — top programs receive thousands of applications for hundreds of spots. A systematic approach dramatically improves outcomes.
+
+Timeline Overview:
+  - US tech internships (summer): recruiting begins in August-October for the following summer.
+  - European internships: recruiting is more rolling but peaks October-February.
+  - Start 6 months before your target start date as a minimum.
+
+Phase 1: Preparation (Do This Before Applying)
+
+1. Minimum viable profile:
+   - GitHub with at least 2-3 solid AI/ML projects with full READMEs
+   - LinkedIn profile at All-Star status, optimized headline
+   - ATS-optimized resume (1 page, tailored to tech/AI roles)
+   - A 30-second pitch: who you are, what you build, what you want
+
+2. Skills floor for AI internships:
+   - Python proficiency (you can write working code without referencing docs)
+   - At least one ML framework (PyTorch or scikit-learn)
+   - SQL basics
+   - Git + GitHub (comfortable with branches, PRs, commit hygiene)
+   - One project deployed or demo-able
+
+Phase 2: Targeting (Strategic Application Selection)
+
+Don't spray-and-pray. Prioritize:
+
+  Tier 1 — Highly competitive (strong brand, hard to get):
+    Google, Meta, Microsoft, Apple, Amazon, Anthropic, OpenAI, DeepMind, Hugging Face
+
+  Tier 2 — Very good (growing AI companies, well-funded startups):
+    Cohere, Mistral, Stability AI, Scale AI, Weights & Biases, LangChain, Weaviate,
+    Major banks with AI labs (JPMorgan AI Research, Goldman Sachs Engineering)
+
+  Tier 3 — Good experience (smaller companies, regional firms, research labs):
+    University AI research labs, local software companies, AI consultancies,
+    Government research institutes (INRIA, Fraunhofer, Alan Turing Institute)
+
+  Strategy: Apply broadly across all tiers simultaneously. Many Tier 1 offers go to people who also have Tier 3 fallbacks.
+
+Phase 3: Finding Opportunities
+
+Job Boards:
+  - LinkedIn Jobs (set up job alerts with keywords: "AI intern," "ML intern," "Python intern")
+  - levels.fyi (salary transparency + job board)
+  - Greenhouse.io, Lever.co (many startups use these ATS platforms)
+  - AngelList / Wellfound (startup internships)
+  - Indeed, Glassdoor (broad but noisy)
+  - Company careers pages directly (bypass ATS sometimes)
+
+Specialized:
+  - MLOps.community job board
+  - Hugging Face job board
+  - AI/ML subreddits (r/MachineLearning, r/cscareerquestions — weekly job threads)
+  - Twitter/X: Follow AI researchers and companies; internship openings are often tweeted
+
+Referrals (Most Effective Route):
+  - A referral multiplies your interview chances by 5-10x at many companies.
+  - Ask alumni from your university (LinkedIn alumni search by company)
+  - Connect with interns or employees at target companies
+  - Attend meetups, hackathons, or virtual events hosted by target companies
+
+Phase 4: Application Execution
+
+For each application:
+  1. Tailor resume: move the most relevant projects and skills to the top, match JD keywords.
+  2. Write a targeted cover letter for Tier 1 companies (2-3 paragraphs max).
+  3. Apply online, then try to find a referral within 48 hours.
+  4. Log each application: company, role, date, status, contact (use a spreadsheet).
+
+Volume: Aim for 30-60 applications over 8 weeks. This gives enough pipeline to get 3-5 interviews.
+
+Phase 5: Interview Execution
+
+Once you get an interview:
+  1. Research the company thoroughly (product, tech stack, recent news, team).
+  2. Review their engineering blog or any published papers.
+  3. Practice LeetCode problems at Medium level (company-tagged problems on LeetCode).
+  4. Prepare 3 STAR behavioral stories.
+  5. Have your projects ready to demo or explain in detail.
+
+Phase 6: Negotiation
+
+For internship offers:
+  - Always ask if the offer is negotiable (even for internships, stipend or housing may be adjustable).
+  - Don't accept immediately — it's normal to ask for 3-5 days to decide.
+  - Compare: stipend, housing stipend, return offer conversion rate, tech stack, team culture.
+
+Red Flags to Watch For:
+  - "Unpaid" internship at a for-profit company (often illegal; check local laws)
+  - No clear project or mentor assigned
+  - Interview process with no technical evaluation (suggests poor engineering culture)
+  - No response within 2 weeks of final round (follow up once, then move on)
+
+European-Specific Notes:
+  - GDPR internship roles are in demand at EU tech companies (combine law + tech background)
+  - Germany, Netherlands, Sweden have strong AI startup ecosystems
+  - Erasmus+ funding can support internships at EU organizations
+  - Visa: EU students have free movement; non-EU students check work permit requirements per country

@@ -1,0 +1,107 @@
+Title: Skill Gap Analysis Framework for AI and Software Engineering Careers
+Source: Career Intelligence Corpus
+
+A skill gap analysis is the process of comparing your current skillset against the requirements of a target role, then creating a prioritized plan to close the gaps. For AI/software careers, this is a critical exercise that prevents you from spending time on low-ROI skills while missing critical ones.
+
+Step 1: Define Your Target Role Clearly
+
+Be specific. "AI Engineer" is too broad. Define:
+  - Role type: AI Engineer? ML Engineer? Data Engineer? Full-stack + AI?
+  - Company type: startup (broad, fast-paced), big tech (specialized, process-heavy), research lab (academic rigour)
+  - Seniority level: intern/junior/mid-level
+  - Domain: healthcare AI? fintech? CV? NLP? GenAI/LLMs?
+
+The more specific your target, the more accurate your gap analysis.
+
+Step 2: Build a Requirements Map
+
+Collect 10-15 job descriptions for your target role from LinkedIn, Greenhouse, or company career pages.
+For each JD, extract:
+  - Must-have skills (appear in 70%+ of JDs)
+  - Nice-to-have skills (appear in 30-60% of JDs)
+  - Domain knowledge requirements
+  - Education requirements
+  - Experience level expectations
+
+Group into categories:
+  A. Programming Languages
+  B. ML/AI Frameworks and Libraries
+  C. Infrastructure and DevOps
+  D. Domain Knowledge (NLP, CV, RL, LLMs)
+  E. Soft Skills
+
+Step 3: Honest Self-Assessment
+
+For each skill on your requirements map, rate yourself:
+  0 — No knowledge
+  1 — Aware (know what it is, never used it)
+  2 — Basic (followed a tutorial, toy project)
+  3 — Intermediate (built a real project, comfortable working with it)
+  4 — Advanced (used in production, can teach others)
+  5 — Expert (deep understanding, designed systems around it)
+
+For internship/junior roles, you need most must-haves at level 3+.
+
+Step 4: Prioritize Gaps
+
+Gaps are weighted by:
+  - Criticality: Is this a hard requirement or nice-to-have?
+  - Learning time: How long does it take to reach level 3?
+  - Leverage: Does learning this skill unlock other skills?
+
+Priority matrix:
+  HIGH PRIORITY: Must-have + quick to learn (e.g., Git for someone who hasn't used it)
+  HIGH PRIORITY: Must-have + takes time (plan for 4-8 weeks: e.g., PyTorch from scratch)
+  MEDIUM PRIORITY: Nice-to-have + quick to learn (e.g., a new library syntax)
+  LOW PRIORITY: Nice-to-have + takes long (defer unless specifically interested)
+
+Step 5: Create a Closure Plan
+
+For each high-priority gap, define:
+  - Target skill level: what level do I need to reach? (usually 3-4 for junior roles)
+  - Learning resource: course, documentation, book, project
+  - Time estimate: realistic hours per week × weeks
+  - Validation method: how will you prove you have the skill? (project, certification, problem solved)
+
+Example Gap Closure Plan:
+
+  Gap: No PyTorch experience
+  Target: Level 3 (comfortable building and training models)
+  Resource: fast.ai Part 1 + PyTorch official tutorials + one custom project
+  Time: 4 weeks at 10 hours/week = 40 hours
+  Validation: Build a custom image classifier, push to GitHub, document results
+
+Step 6: Track and Adjust
+
+Review your skill map monthly. Skills you use in projects grow faster than skills you only study.
+Practical project work is the highest-leverage learning method — always build something.
+
+Common Gaps Found in AI/ML Internship Applicants:
+
+1. Strong Python, weak on production engineering
+   Typical gap: No Docker, no CI/CD, no API development
+   Fix: Build one FastAPI app with a Dockerfile and GitHub Actions CI (2 weeks)
+
+2. ML theory knowledge without practical implementation
+   Typical gap: Can explain backpropagation but never trained a model from scratch
+   Fix: Complete fast.ai Part 1 + reproduce a paper result (4-6 weeks)
+
+3. LLM experience without RAG or agent architecture
+   Typical gap: Used ChatGPT but never built a production LLM app
+   Fix: Build a RAG system with LangChain + ChromaDB (1-2 weeks with good tutorial)
+
+4. No deployment experience
+   Typical gap: Projects exist only as local Jupyter notebooks
+   Fix: Deploy one project to Hugging Face Spaces, Streamlit Cloud, or a VPS (1 week)
+
+5. Weak on data: cannot write good SQL or handle messy real-world data
+   Typical gap: Only worked with clean Kaggle datasets
+   Fix: Mode Analytics SQL tutorials + one project with a real messy dataset (2 weeks)
+
+The 80/20 Rule for Skill Development:
+Identify the 20% of skills that appear in 80% of job descriptions for your target role.
+Master those first. Everything else is secondary.
+
+For most junior AI Engineer roles in 2025-2026, that 20% is:
+  Python (strong), SQL (basic-intermediate), Git, one ML framework (PyTorch or scikit-learn),
+  LLM API usage, basic understanding of RAG, Docker basics, ability to deploy a simple API.

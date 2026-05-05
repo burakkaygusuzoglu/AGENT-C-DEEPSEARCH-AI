@@ -15,7 +15,7 @@ def search_web(query: str, max_results: int = 5) -> str:
     """
     api_key = os.getenv("TAVILY_API_KEY", "")
 
-    if not api_key or api_key == "your_tavily_key_here":
+    if not api_key or api_key == "your_tavily_api_key":
         return (
             "[Web search unavailable — add TAVILY_API_KEY to your .env file]\n"
             "Get a free key at https://tavily.com"

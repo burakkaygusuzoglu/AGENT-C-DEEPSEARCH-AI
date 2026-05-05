@@ -1,0 +1,100 @@
+Title: Behavioral Interview Preparation for Tech and AI Roles
+Source: Career Intelligence Corpus
+
+Behavioral interviews assess how you have acted in past situations to predict how you will behave in the future. They are used at every tech company, including FAANG, startups, and research labs. Many candidates fail behavioral rounds despite strong technical skills because they haven't prepared structured answers.
+
+The STAR Method (Foundation):
+
+Every behavioral answer should follow STAR:
+  S — Situation: Set the scene. Brief context.
+  T — Task: What was your responsibility or the challenge?
+  A — Action: What specifically DID YOU do? (focus on "I", not "we")
+  R — Result: What was the measurable outcome? What did you learn?
+
+Time per answer: 2-3 minutes. Practice staying focused — rambling loses the interviewer.
+
+Core Question Categories and Example Prompts:
+
+1. Teamwork & Collaboration
+  "Tell me about a time you worked with a difficult team member."
+  "Describe a successful team project and your role in it."
+  "How do you handle disagreements in a technical discussion?"
+
+Prepare: A story about a group project (university, internship, hackathon) where you collaborated effectively, navigated a conflict, or unified the group around a decision.
+
+2. Problem-Solving Under Pressure
+  "Tell me about a time you faced a major technical obstacle."
+  "Describe a time a project failed. What did you do?"
+  "Tell me about a time you had to learn something quickly under pressure."
+
+Prepare: A debugging story or a tight deadline story where your specific actions made a difference.
+
+3. Initiative & Leadership
+  "Tell me about a time you took initiative without being asked."
+  "Describe a time you led a project or team."
+  "Have you ever disagreed with your manager? How did you handle it?"
+
+Prepare: A story where you saw a gap or problem and acted proactively — even as a student (club project, open-source contribution, proposing a new approach).
+
+4. Failure & Learning
+  "Tell me about your biggest professional failure."
+  "Describe a time you made a mistake. What happened?"
+  "What would you have done differently on a past project?"
+
+Prepare: A genuine failure story. Companies want to see self-awareness and growth mindset — not "I work too hard" as a fake weakness. Be honest and focus on what you learned.
+
+5. Ambiguity & Adaptability
+  "Tell me about a time requirements changed mid-project. How did you adapt?"
+  "Describe a time you had to make a decision with incomplete information."
+  "How do you prioritize when everything feels urgent?"
+
+Prepare: A story about scope change, pivoting a technical approach, or managing competing deadlines.
+
+6. Communication
+  "Tell me about a time you had to explain a complex technical concept to a non-technical person."
+  "Describe how you communicate progress on a project."
+
+Prepare: A story about simplifying ML/AI concepts for a professor, stakeholder, or non-technical teammate.
+
+Company-Specific Values to Research:
+
+Amazon: 16 Leadership Principles (Customer Obsession, Ownership, Bias for Action, Invent and Simplify, etc.)
+Google: Googleyness + Leadership = curiosity, collaboration, comfort with ambiguity
+Meta: Move fast, be bold, focus on long-term impact
+Microsoft: Growth mindset (Carol Dweck's framework), diversity of thought
+
+For each company you apply to:
+  1. Read their published values/principles.
+  2. Map your STAR stories to those values.
+  3. Adjust the framing of the same story to match different company cultures.
+
+Building Your Story Bank:
+
+Prepare 6-8 versatile STAR stories from your experience. Tag each one with which question types it answers. A good story can often be reframed to answer multiple question types.
+
+Story sources for students:
+  - University capstone or group projects
+  - Internship or part-time work experiences
+  - Hackathon projects
+  - Open-source contributions
+  - Club/society leadership roles
+  - Teaching assistant or tutoring experiences
+  - Independent projects that faced real challenges
+
+Questions You Should Ask the Interviewer:
+
+Always prepare 2-3 thoughtful questions. These signal genuine interest and intelligence.
+  "What does a typical first 30-60-90 days look like for someone in this role?"
+  "What are the biggest technical challenges the team is facing right now?"
+  "How does the team approach code review and knowledge sharing?"
+  "What does success look like for this role in the first year?"
+
+Avoid: "What's the salary?" or "How many vacation days?" in a first-round interview.
+
+Day-of Behavioral Interview Checklist:
+  ✓ 5 STAR stories prepared and practiced out loud (not just in your head)
+  ✓ Company values printed/reviewed
+  ✓ 3 questions prepared for the interviewer
+  ✓ Test your camera, mic, and background (for virtual)
+  ✓ Arrive or join 5 minutes early
+  ✓ Notebook to jot keywords if you need to organize a complex answer

@@ -1,6 +1,6 @@
 """
-Deep Research Agent — Main Entry Point
-========================================
+Deep Research Agent: Career & Technology Intelligence Agent
+============================================================
 Usage:
   python main.py                          # interactive mode
   python main.py "What is RAG?"           # single query mode
@@ -20,11 +20,13 @@ load_dotenv()
 sys.path.insert(0, str(Path(__file__).parent))
 
 BANNER = """
-╔══════════════════════════════════════════════════╗
-║         🔬  Deep Research Agent  🔬              ║
-║   LangGraph + LangChain + RAG + Web Search       ║
-╚══════════════════════════════════════════════════╝
-Type your research question (or 'quit' to exit)
+╔══════════════════════════════════════════════════════════╗
+║    🚀  Career & Technology Intelligence Agent  🚀        ║
+║    Powered by Deep Research Agent Engine                 ║
+║    LangGraph · RAG · Web Search · Career Intelligence   ║
+╚══════════════════════════════════════════════════════════╝
+Research AI/tech careers, skill gaps, trends & interview prep.
+Type your question (or 'quit' to exit)
 """
 
 
@@ -34,12 +36,17 @@ def run_agent(query: str) -> str:
 
     graph = build_graph()
     initial_state = {
-        "query":        query,
-        "route":        "",
-        "rag_result":   "",
-        "web_result":   "",
-        "sources":      [],
-        "final_answer": "",
+        "query":           query,
+        "route":           "",
+        "intent":          "",
+        "route_reason":    "",
+        "rag_result":      "",
+        "web_result":      "",
+        "sources":         [],
+        "profile_summary": "",
+        "skill_gap":       "",
+        "recommendations": [],
+        "final_answer":    "",
     }
 
     print(f"\n{'='*55}")

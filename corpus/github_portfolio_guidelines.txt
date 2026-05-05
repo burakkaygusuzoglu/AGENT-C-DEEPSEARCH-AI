@@ -1,0 +1,96 @@
+Title: GitHub Portfolio Guidelines for AI/Software Engineers
+Source: Career Intelligence Corpus
+
+Your GitHub profile is your most important portfolio asset as a developer. Recruiters and hiring managers routinely check GitHub when evaluating candidates, especially for AI, ML, and software engineering roles. A strong GitHub profile demonstrates practical ability better than any certification.
+
+1. Profile Setup
+
+- Professional username: use your real name or a clean handle, not "coolcoder123."
+- Profile photo: professional headshot or clean avatar.
+- Bio: 1-2 lines describing your focus area. Example: "AI Engineer | LangChain · PyTorch · RAG systems | Open to internships."
+- Location: City, Country (helps with local job searches).
+- Website: link to your portfolio site or LinkedIn.
+- Pinned repositories: pin your 6 best projects — this is the first thing visitors see.
+
+2. Repository Quality Over Quantity
+
+Recruiters care about depth, not the number of repos.
+
+For each pinned project:
+- Clear, descriptive name (not "project1" or "homework")
+- Complete README (see section 3)
+- Working code (not half-finished or broken)
+- Clean commit history (meaningful commit messages, not "fix," "asdf," "update")
+- .gitignore present and secrets excluded from all commits
+
+3. README Structure for AI/ML Projects
+
+A great README includes:
+  # Project Title
+  One sentence describing what this project does and why it matters.
+
+  ## Architecture / How It Works
+  Diagram or description of the system (LangGraph flow, model pipeline, etc.)
+
+  ## Demo
+  GIF, screenshot, or link to a live demo / video walkthrough.
+
+  ## Tech Stack
+  List all key technologies used.
+
+  ## Setup & Installation
+  Step-by-step: clone → install dependencies → set env vars → run.
+
+  ## Results
+  Metrics, examples of output, or performance benchmarks.
+
+  ## Future Improvements
+  Shows you think ahead.
+
+4. Commit Hygiene
+
+Good commits signal engineering professionalism:
+- Write commits in imperative mood: "Add RAG pipeline" not "added rag pipeline" or "stuff"
+- Atomic commits: one logical change per commit.
+- Never commit .env files, API keys, or large binary files.
+- Use branches for features; main branch should always be stable.
+
+5. Project Ideas That Stand Out for AI/ML Roles
+
+Tier 1 — High Impact (build at least 1-2 of these):
+- LLM-powered RAG system with a domain-specific knowledge base
+- Fine-tuned transformer model for a specific NLP task (with evaluation results)
+- Computer vision pipeline (object detection, image classification) with deployed API
+- Multi-step AI agent using LangGraph or similar framework
+- End-to-end ML pipeline with MLflow tracking + FastAPI serving
+
+Tier 2 — Good Fillers:
+- Kaggle competition solutions with well-documented notebooks
+- CLI tools built with Python
+- Open-source contributions (even small bug fixes or documentation PRs)
+- Automation scripts that solve a real problem
+
+6. Green Square Activity
+
+Consistent activity (green contribution squares) signals dedication. Even 3-4 commits per week adds up visibly. This doesn't mean fake commits — it means staying active on real projects.
+
+7. Open Source Contributions
+
+Contributing to popular AI/ML repositories (LangChain, Hugging Face, scikit-learn) dramatically increases credibility. Start with:
+- Documentation fixes
+- Fixing "good first issue" bugs
+- Adding examples or test coverage
+
+8. GitHub Actions for AI Projects
+
+Adding a GitHub Actions workflow that runs tests or linting shows DevOps awareness:
+  .github/workflows/ci.yml
+  - Run pytest on push
+  - Lint with ruff or flake8
+
+9. What to Avoid
+
+- Never push API keys or .env files (use .gitignore and github secret scanning)
+- Avoid committing large model files — use Git LFS or link to Hugging Face Hub
+- Don't leave TODO comments that span entire files
+- Don't have half-finished READMEs ("Coming soon…")

@@ -1,0 +1,72 @@
+Title: Data Engineer Career Roadmap — Building the Pipelines That Power AI
+Source: Career Intelligence Corpus
+
+A Data Engineer designs and maintains the data infrastructure that makes analytics, machine learning, and business intelligence possible. While AI Engineers work with models, Data Engineers work with the pipelines that feed those models. The role is in extremely high demand as every organization needs reliable data infrastructure.
+
+Core Skill Areas:
+
+1. Programming
+- Python: primary language for pipeline scripting, data transformation, automation.
+- SQL: non-negotiable. Master complex joins, window functions, CTEs, query optimization.
+- Scala or Java: useful for working with Apache Spark in large-scale environments.
+
+2. Data Pipeline & ETL
+- Batch processing: Apache Spark, Pandas, Polars.
+- Stream processing: Apache Kafka, Apache Flink, AWS Kinesis.
+- Workflow orchestration: Apache Airflow (most common), Prefect, Dagster.
+- ETL vs ELT distinction — modern data stacks prefer ELT.
+
+3. Cloud Data Platforms
+- AWS: S3, Glue, Redshift, Lambda, Athena.
+- GCP: BigQuery, Dataflow, Pub/Sub, Cloud Composer.
+- Azure: Azure Data Factory, Synapse Analytics, Blob Storage.
+- At least one cloud platform is expected for any data role.
+
+4. Data Warehousing & Lakehouse
+- Data warehouses: Snowflake, BigQuery, Redshift, Azure Synapse.
+- Data lakes: Delta Lake, Apache Iceberg, Apache Hudi.
+- dbt (data build tool): essential for modern analytics engineering.
+
+5. Databases
+- Relational: PostgreSQL, MySQL.
+- NoSQL: MongoDB, Cassandra, DynamoDB.
+- Vector databases (increasingly relevant for AI pipelines): Pinecone, Weaviate.
+
+6. Infrastructure & DevOps
+- Docker and Kubernetes for containerized pipeline deployment.
+- Terraform for infrastructure-as-code.
+- CI/CD pipelines for data (dbt tests, data quality checks).
+
+7. Data Quality & Governance
+- Great Expectations, Soda, or Monte Carlo for data quality.
+- Data catalog tools: Apache Atlas, DataHub.
+- Understanding of GDPR/data privacy considerations.
+
+Recommended Learning Path (12 months for a student):
+
+Months 1-2: SQL mastery (Mode Analytics SQL School, LeetCode SQL)
+Months 3-4: Python for data (Pandas, file I/O, APIs)
+Months 5-6: Cloud fundamentals (AWS or GCP free tier) + basics of Airflow
+Months 7-9: Spark, data warehousing, dbt
+Months 10-12: Stream processing, capstone pipeline project
+
+Portfolio Projects That Impress:
+1. End-to-end ETL pipeline: scrape/fetch data → transform → load to warehouse → dbt models → dashboard
+2. Real-time streaming pipeline with Kafka + Spark
+3. A dbt project with tests, documentation, and incremental models
+4. Data quality framework for a public dataset
+
+Key Certifications:
+- AWS Certified Data Analytics Specialty
+- Google Professional Data Engineer
+- dbt Analytics Engineering Certification
+- Databricks Certified Data Engineer Associate
+
+Salary Ranges (2025):
+- Junior Data Engineer (0-2 years): $75K–$110K USD, €40K–€65K EUR
+- Mid-level (2-5 years): $110K–$160K USD
+- Senior (5+ years): $160K–$250K+ USD
+
+Difference from AI Engineer:
+Data Engineers build infrastructure; AI Engineers build intelligence on top of it.
+Both roles are highly complementary — knowing both makes you exceptionally valuable.

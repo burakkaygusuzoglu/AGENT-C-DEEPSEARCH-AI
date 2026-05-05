@@ -1,0 +1,73 @@
+Title: AI Engineer Career Roadmap — From Student to Professional
+Source: Career Intelligence Corpus
+
+An AI Engineer designs, builds, and deploys AI-powered systems in production. Unlike a research scientist who publishes papers, an AI Engineer focuses on bringing models into working software products. The role sits at the intersection of software engineering and machine learning.
+
+Core Skill Areas:
+
+1. Programming Foundations
+- Python is the primary language. Master data structures, OOP, and async programming.
+- Understand type hints, virtual environments, and packaging (pip, poetry).
+- Secondary skills: SQL for data querying, Bash for automation.
+
+2. Machine Learning Fundamentals
+- Supervised learning: regression, classification, gradient descent.
+- Unsupervised learning: clustering, dimensionality reduction.
+- Deep learning: neural networks, backpropagation, CNNs, RNNs, Transformers.
+- Key libraries: scikit-learn, PyTorch (preferred in research), TensorFlow/Keras.
+
+3. Large Language Models & GenAI
+- Understand how transformer architecture works (attention mechanism, positional encoding).
+- Prompt engineering: zero-shot, few-shot, chain-of-thought.
+- Fine-tuning techniques: LoRA, QLoRA, PEFT.
+- LLM APIs: OpenAI, Anthropic Claude, Google Gemini, Mistral.
+- Frameworks: LangChain, LangGraph, LlamaIndex.
+
+4. RAG (Retrieval-Augmented Generation)
+- Build document ingestion pipelines (chunking, embedding, indexing).
+- Vector databases: ChromaDB, Pinecone, Weaviate, pgvector.
+- Embedding models: OpenAI text-embedding-3, Sentence Transformers.
+
+5. AI Agents & Orchestration
+- Build agentic systems with tool use (web search, code execution, database queries).
+- LangGraph for stateful multi-step workflows.
+- OpenAI function calling / tool use API.
+
+6. MLOps & Deployment
+- Model serving: FastAPI, BentoML, TorchServe.
+- Containerization: Docker.
+- Cloud platforms: AWS SageMaker, GCP Vertex AI, Azure ML.
+- Experiment tracking: MLflow, Weights & Biases.
+- CI/CD for ML pipelines.
+
+7. Data Engineering Basics
+- Data pipelines with Pandas, Polars, or PySpark.
+- Working with S3, BigQuery, or similar storage.
+- ETL processes and data validation.
+
+Recommended Learning Path (12 months for a student):
+
+Months 1-3: Python mastery + ML fundamentals (fast.ai, Coursera ML Specialization)
+Months 4-6: Deep learning + PyTorch (fast.ai Part 2, PyTorch tutorials)
+Months 7-9: LLMs, prompt engineering, RAG systems (build 2-3 projects)
+Months 10-12: AI agents, MLOps basics, capstone project + portfolio building
+
+Portfolio Projects That Impress Employers:
+1. RAG chatbot over a domain-specific document set
+2. Fine-tuned LLM for a specific task (classification, summarization)
+3. Multi-step AI agent that completes a real-world task autonomously
+4. An end-to-end ML pipeline deployed to cloud with monitoring
+
+Key Certifications (optional but helpful):
+- AWS Certified Machine Learning Specialty
+- Google Professional Machine Learning Engineer
+- DeepLearning.AI specializations (Andrew Ng)
+
+Salary Ranges (2025, varies by location):
+- Junior AI Engineer (0-2 years): $80K–$120K USD (US), €45K–€70K EUR (Europe)
+- Mid-level (2-5 years): $120K–$180K USD
+- Senior (5+ years): $180K–$300K+ USD
+
+Top Hiring Companies for AI Engineers:
+Meta AI, Google DeepMind, Anthropic, OpenAI, Microsoft, Amazon, Hugging Face, Cohere,
+plus thousands of AI-first startups and enterprises adopting LLMs.
