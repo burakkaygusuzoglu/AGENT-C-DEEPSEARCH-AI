@@ -241,42 +241,65 @@ The `corpus/web_learned/` directory is excluded from Git (`.gitignore`) because 
 
 ---
 
-## Match Score System
+## Match Score & Career Recommendations System
 
-The agent includes a **role-aware, rule-based Match Score system** ([src/scoring.py](src/scoring.py)) that runs automatically for career-related queries without any external ML dependency.
+The agent includes a **role-aware, category-based Match Score system** ([src/scoring.py](src/scoring.py)) that runs automatically for career-related queries. No external ML dependencies — purely rule-based and explainable.
 
 ### How It Works
 
-1. **Role detection** — `detect_target_role()` scans the query for role patterns using regex. "machine engineer" is normalised to "Mechanical Engineer"; "ML engineer" maps to "Machine Learning Engineer"; unrecognised roles default to AI Engineer.
-2. **Skill extraction** — `extract_skills_from_text()` matches ~60 known skill tokens (including multi-word phrases like "digital twin" and "data modeling") against the query text using word-boundary regex.
-3. **Score computation** — `compute_match_score()` calculates three dimensions and a weighted composite:
-   - **Skills Match** (60% weight) — % of target role skills the user already has
-   - **Experience Breadth** (30% weight) — heuristic based on number of skills listed
-   - **Market Demand** (10% weight) — derived from the target role's skill set keywords
-4. **Output rendering** — the Match Score section is injected into the research brief before the Recommended Action Plan section.
+1. **Role detection** — `detect_target_role()` scans the query with ordered regex patterns. "machine engineer" normalises to Mechanical Engineer; "ML engineer" maps to Machine Learning Engineer; unrecognised roles default to AI Engineer.
+2. **Skill extraction with synonyms** — `extract_skills_from_text()` matches 70+ known skill tokens (including multi-word phrases like "digital twin") then maps each through `SKILL_SYNONYMS` to a canonical category name:
+   - `opencv` / `yolo` / `yolov8` → `computer vision`
+   - `langchain` / `langgraph` / `rag` / `llm` → `agentic ai`
+   - `fastapi` / `flask` / `django` → `backend api`
+   - `docker` / `kubernetes` → `deployment`
+   - `aws` / `gcp` / `azure` → `cloud`
+   - `pandas` / `numpy` → `data processing`
+   - `react` / `javascript` / `html` → `frontend`
+   - `pytest` / `selenium` → `testing`
+3. **Category-based scoring** — `compute_match_score()` compares normalised user skills against the flattened target skill categories. Three weighted dimensions:
+   - **Skills Match** (60%) — % of target category skills the user covers
+   - **Experience Breadth** (25%) — heuristic based on distinct canonical skill count
+   - **Market Demand** (15%) — derived from role metadata (AI/Data/Software = High)
+4. **Rich output** — the result includes `strong_skills`, `missing_skills`, `quick_wins` (top-3 learnable gaps with free resources), and a role-specific `project_recommendation`.
+5. **Injection** — the Match Score block is inserted before `## 5. Recommended Action Plan` in the career brief.
 
-### Supported Roles and Their Skill Sets
+### Supported Roles and Skill Categories
 
-| Role | Required Skills |
+| Role | Skill Categories |
 |---|---|
-| AI Engineer | python, pytorch, tensorflow, sql, git, docker, ml, llm, rag |
-| Machine Learning Engineer | python, pytorch, tensorflow, sklearn, sql, docker, git, mlflow, ml |
-| Data Engineer | python, sql, spark, airflow, docker, aws, etl, data modeling |
-| Software Engineer | python, javascript, git, sql, react, api, testing, docker |
-| Mechanical Engineer | cad, solidworks, autocad, matlab, python, simulation, manufacturing, thermodynamics, materials, digital twin |
+| AI Engineer | core (python, ML, DL, agentic ai) · vision · tools (pytorch, tensorflow) · data · deployment |
+| ML Engineer | core · tools (pytorch, tensorflow, scikit-learn, mlflow) · data · deployment |
+| Data Engineer | core (python, sql, etl, data modeling) · tools (airflow, spark, dbt) · deployment |
+| Software Engineer | core (python, sql, git, algorithms) · backend api · frontend · testing · deployment |
+| Mechanical Engineer | core (cad, thermodynamics, materials, manufacturing) · tools (solidworks, autocad, matlab) · modern (digital twin, python) |
 
 ### Triggered For
 
-Intents: `skill_gap`, `career_plan`, `job_research`, `tech_trend`
+Intents: `skill_gap`, `career_plan`, `job_research`, `tech_trend`, `interview_prep`
 
 ### When No User Skills Are Detected
 
-If the query does not mention any skills, the system **does not produce a fake score**. Instead it shows:
-- The detected target role
-- The full required skill list for that role
-- A prompt asking the user to include their skills in the next query
+If the query contains no detectable skills (e.g. *"how can I become a machine engineer?"*), the system **never produces a fake 0% score**. Instead it:
+- Identifies the target role from the query
+- Shows the full categorised skill requirements for that role
+- Asks the user to include their current skills in the next query for a real score
 
-This prevents misleading 0% scores on queries like *"how can I become a machine engineer?"* where the user simply hasn't stated their profile yet.
+### Extra Career Suggestions
+
+For all career and technology intent queries, the LLM synthesizer automatically adds a **§ 6. Extra Career Suggestions** section to every research brief containing:
+- **Skill to learn next** — one specific recommendation with a free resource
+- **Mini-project to build** — one concrete, completable project idea
+- **GitHub action** — one thing to publish or improve right now
+- **Market signal to track** — one newsletter, job board, or trend to monitor
+
+---
+
+## Future GUI
+
+A Streamlit web interface is planned. See [GUI_PLAN.md](GUI_PLAN.md) for the full component breakdown, layout wireframe, and implementation order.
+
+The CLI-based agent is the primary interface for the current submission.
 
 ---
 
@@ -352,6 +375,57 @@ Expected output:
    📄 25 new documents → ~180 chunks
    ✅ Vector store now has 180 total chunks
 ```
+
+---
+
+## Streamlit Web GUI
+
+A polished web interface is available as a separate entry point — it does not modify or replace the CLI.
+
+### Install Streamlit
+
+Streamlit is included in `requirements.txt`. If you installed dependencies already, it is ready:
+
+```bash
+pip install -r requirements.txt   # includes streamlit>=1.35.0
+```
+
+### Launch the GUI
+
+```bash
+# Activate venv first
+venv\Scripts\activate      # Windows
+source venv/bin/activate   # macOS / Linux
+
+streamlit run app.py
+```
+
+The browser opens automatically at `http://localhost:8501`.
+
+### What the GUI Shows
+
+| Panel | Content |
+|---|---|
+| **Sidebar — Roles** | Supported role descriptions (AI Engineer, Data Engineer, etc.) |
+| **Sidebar — Knowledge Base** | Live ChromaDB chunk counts (corpus + web-learned) |
+| **Sidebar — Configuration** | API key status indicators (✅ / ❌) |
+| **Example Queries** | Dropdown to load 5 pre-written queries |
+| **Query Input** | Text area — type freely or load an example |
+| **Agent Decision** | Intent label, route label, routing reason |
+| **Match Score Card** | Overall %, Skills Match %, Experience %, Market Demand + progress bar |
+| **Research Brief** | Full Markdown output from the synthesizer |
+| **Web Sources** | Collapsible expander with titled, clickable source URLs |
+
+### GUI vs CLI
+
+| Feature | CLI (`main.py`) | GUI (`app.py`) |
+|---|---|---|
+| Interactive loop | ✅ | — |
+| Single query | ✅ | ✅ |
+| `--ingest` rebuild | ✅ | — (run from CLI) |
+| Match Score display | Text output | Metric cards + progress bar |
+| Sources | Inline text | Collapsible expander |
+| Corpus stats | — | Live sidebar widget |
 
 ---
 

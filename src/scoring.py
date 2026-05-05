@@ -1,5 +1,5 @@
 """
-Match Score System — Role-aware skill alignment scoring for career intelligence queries.
+Match Score System — Role-aware, category-based skill alignment scoring.
 Lightweight, rule-based, explainable. No external ML dependencies.
 """
 
@@ -7,61 +7,159 @@ from __future__ import annotations
 
 import re
 
-# ── Canonical skill vocabulary ────────────────────────────────────────────────
-# Multi-word phrases (e.g. "digital twin", "data modeling") are matched with
-# regex \b boundaries and must be listed before any of their constituent words.
+# ─────────────────────────────────────────────────────────────────────────────
+# Skill vocabulary
+# Multi-word phrases listed before their single-word subsets so that regex
+# word-boundary matching picks them up as complete phrases first.
+# ─────────────────────────────────────────────────────────────────────────────
+
 KNOWN_SKILLS: list[str] = [
-    # Languages
-    "python", "javascript", "typescript", "java", "go", "rust", "c++", "c#", "kotlin", "swift",
+    # Multi-word concept phrases — must come first
+    "machine learning", "deep learning", "computer vision",
+    "data modeling", "data modelling", "data pipelines", "data structures",
+    "data processing", "data warehouse", "data analysis",
+    "additive manufacturing", "digital twin", "unit testing",
+    "agentic ai",
+    # Programming languages
+    "python", "javascript", "typescript", "java", "go", "rust",
+    "c++", "c#", "kotlin", "swift", "html", "css", "matlab",
     # Data & query
     "sql", "nosql", "postgresql", "mysql", "mongodb", "redis", "sqlite",
     # Web frameworks & APIs
-    "fastapi", "flask", "django", "express", "nodejs", "react", "vue", "angular", "nextjs", "api",
+    "fastapi", "flask", "django", "express", "nodejs",
+    "react", "vue", "angular", "nextjs",
     # ML / DL frameworks
-    "pytorch", "tensorflow", "keras", "scikit-learn", "sklearn", "xgboost", "lightgbm",
+    "pytorch", "tensorflow", "keras", "scikit-learn", "sklearn",
+    "xgboost", "lightgbm",
     # GenAI / LLM tooling
     "langchain", "langgraph", "llamaindex", "huggingface", "openai", "anthropic",
     "rag", "llm", "nlp", "transformers", "fine-tuning", "lora",
-    # Computer vision
-    "opencv", "yolo", "yolov5", "yolov8", "pillow", "torchvision",
-    # Data engineering — multi-word phrases before single words
-    "data modeling", "data modelling",
+    # Computer vision tools
+    "opencv", "yolo", "yolov5", "yolov8", "yolov11", "pillow", "torchvision",
+    # Data engineering
     "spark", "kafka", "airflow", "dbt", "pandas", "numpy", "polars", "etl",
-    # Mechanical / CAD — multi-word phrases before single words
-    "digital twin", "solidworks", "autocad", "matlab", "cad",
-    "simulation", "manufacturing", "thermodynamics", "materials",
-    # MLOps / DevOps / Testing
-    "mlflow", "wandb", "docker", "kubernetes", "git", "github", "ci/cd",
-    "terraform", "linux", "bash", "testing",
-    # Cloud
+    # Mechanical / CAD
+    "solidworks", "autocad", "cad", "simulation", "manufacturing",
+    "thermodynamics", "materials", "mechanics",
+    # MLOps / DevOps / Quality
+    "mlflow", "wandb", "docker", "kubernetes", "git", "github",
+    "ci/cd", "terraform", "linux", "bash", "pytest", "selenium", "testing",
+    # Cloud platforms
     "aws", "gcp", "azure", "s3", "lambda", "bigquery",
-    # Databases / backends
+    # Backend / databases
     "supabase", "firebase", "pinecone", "weaviate", "chromadb",
-    # General shorthand concepts
-    "ml", "ai", "cv",
+    # General concepts
+    "ml", "ai", "cv", "api", "oop", "algorithms", "programming",
 ]
 
-# ── Role → canonical skill sets ───────────────────────────────────────────────
-ROLE_SKILL_MAP: dict[str, list[str]] = {
-    "ai_engineer": [
-        "python", "pytorch", "tensorflow", "sql", "git", "docker", "ml", "llm", "rag",
-    ],
-    "ml_engineer": [
-        "python", "pytorch", "tensorflow", "sklearn", "sql", "docker", "git", "mlflow", "ml",
-    ],
-    "data_engineer": [
-        "python", "sql", "spark", "airflow", "docker", "aws", "etl", "data modeling",
-    ],
-    "software_engineer": [
-        "python", "javascript", "git", "sql", "react", "api", "testing", "docker",
-    ],
-    "mechanical_engineer": [
-        "cad", "solidworks", "autocad", "matlab", "python", "simulation",
-        "manufacturing", "thermodynamics", "materials", "digital twin",
-    ],
+# ─────────────────────────────────────────────────────────────────────────────
+# Synonym / category map
+# Maps raw detected tokens → canonical normalised skill name.
+# Unlisted tokens are kept as-is.
+# ─────────────────────────────────────────────────────────────────────────────
+
+SKILL_SYNONYMS: dict[str, str] = {
+    # Computer vision
+    "opencv":           "computer vision",
+    "yolo":             "computer vision",
+    "yolov5":           "computer vision",
+    "yolov8":           "computer vision",
+    "yolov11":          "computer vision",
+    "torchvision":      "computer vision",
+    "pillow":           "computer vision",
+    "cv":               "computer vision",
+    # Backend / API
+    "fastapi":          "backend api",
+    "flask":            "backend api",
+    "django":           "backend api",
+    "express":          "backend api",
+    "nodejs":           "backend api",
+    "api":              "backend api",
+    # SQL normalisation (keep "sql" itself as-is)
+    "postgresql":       "sql",
+    "mysql":            "sql",
+    "sqlite":           "sql",
+    # Data processing
+    "pandas":           "data processing",
+    "numpy":            "data processing",
+    "polars":           "data processing",
+    # Agentic AI grouping
+    "langchain":        "agentic ai",
+    "langgraph":        "agentic ai",
+    "rag":              "agentic ai",
+    "llm":              "agentic ai",
+    "llamaindex":       "agentic ai",
+    # Deployment
+    "docker":           "deployment",
+    "kubernetes":       "deployment",
+    # Cloud
+    "aws":              "cloud",
+    "gcp":              "cloud",
+    "azure":            "cloud",
+    "s3":               "cloud",
+    "lambda":           "cloud",
+    "bigquery":         "cloud",
+    # Frontend
+    "react":            "frontend",
+    "vue":              "frontend",
+    "angular":          "frontend",
+    "nextjs":           "frontend",
+    "html":             "frontend",
+    "css":              "frontend",
+    "javascript":       "frontend",
+    "typescript":       "frontend",
+    # Testing
+    "pytest":           "testing",
+    "selenium":         "testing",
+    "unit testing":     "testing",
+    # ML short-forms
+    "ml":               "machine learning",
+    # Aliases
+    "sklearn":          "scikit-learn",
+    "data modelling":   "data modeling",
 }
 
-# ── Human-readable display names (also exported for agent logging) ────────────
+# ─────────────────────────────────────────────────────────────────────────────
+# Role → categorised skill requirements (all values must be detectable from text)
+# ─────────────────────────────────────────────────────────────────────────────
+
+ROLE_SKILL_MAP: dict[str, dict[str, list[str]]] = {
+    "ai_engineer": {
+        "core":       ["python", "machine learning", "deep learning", "agentic ai"],
+        "vision":     ["computer vision"],
+        "tools":      ["pytorch", "tensorflow"],
+        "data":       ["sql", "data processing"],
+        "deployment": ["deployment", "cloud", "backend api"],
+    },
+    "ml_engineer": {
+        "core":       ["python", "machine learning", "deep learning"],
+        "tools":      ["pytorch", "tensorflow", "scikit-learn", "mlflow"],
+        "data":       ["sql", "data processing"],
+        "deployment": ["deployment", "cloud"],
+    },
+    "data_engineer": {
+        "core":       ["python", "sql", "etl", "data modeling"],
+        "tools":      ["airflow", "spark", "dbt", "data processing"],
+        "deployment": ["deployment", "cloud"],
+    },
+    "software_engineer": {
+        "core":       ["python", "sql", "git", "algorithms"],
+        "backend":    ["backend api"],
+        "frontend":   ["frontend"],
+        "quality":    ["testing"],
+        "deployment": ["deployment", "cloud"],
+    },
+    "mechanical_engineer": {
+        "core":    ["cad", "thermodynamics", "materials", "manufacturing"],
+        "tools":   ["solidworks", "autocad", "matlab", "simulation"],
+        "modern":  ["digital twin", "python", "data analysis"],
+    },
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Role metadata
+# ─────────────────────────────────────────────────────────────────────────────
+
 ROLE_DISPLAY_NAMES: dict[str, str] = {
     "ai_engineer":         "AI Engineer",
     "ml_engineer":         "Machine Learning Engineer",
@@ -72,10 +170,79 @@ ROLE_DISPLAY_NAMES: dict[str, str] = {
 
 DEFAULT_ROLE = "ai_engineer"
 
-# ── Role detection patterns ───────────────────────────────────────────────────
-# Listed most-specific first: "machine learning engineer" before "machine engineer"
-# so the first regex match wins and we never partially match a longer phrase.
+_ROLE_DEMAND: dict[str, tuple[str, int]] = {
+    "ai_engineer":         ("high",   100),
+    "ml_engineer":         ("high",   100),
+    "data_engineer":       ("high",   100),
+    "software_engineer":   ("high",    95),
+    "mechanical_engineer": ("medium",  75),
+}
+
+PROJECT_RECOMMENDATIONS: dict[str, str] = {
+    "ai_engineer": (
+        "Build a RAG-powered research assistant using LangGraph, ChromaDB, and FastAPI. "
+        "Add a Tavily web-search tool and deploy to Hugging Face Spaces with a Gradio interface."
+    ),
+    "ml_engineer": (
+        "Pick a Kaggle dataset, fine-tune a pre-trained Hugging Face model with LoRA, "
+        "track experiments with MLflow, serve predictions via FastAPI, and containerise with Docker."
+    ),
+    "data_engineer": (
+        "Build an end-to-end pipeline: pull a public API → transform with Pandas/dbt → "
+        "load to PostgreSQL → schedule with Airflow → expose a summary dashboard. Containerise with Docker."
+    ),
+    "software_engineer": (
+        "Build a full-stack task manager: FastAPI backend + PostgreSQL + React frontend. "
+        "Add JWT auth, write pytest unit tests (80%+ coverage), Dockerise, and deploy to a free cloud tier."
+    ),
+    "mechanical_engineer": (
+        "Build a Python-based simulation of a mechanical system (beam deflection, "
+        "heat transfer, or motor dynamics). Visualise results with Matplotlib, document in a GitHub README, "
+        "and explore digital-twin concepts with a public IoT sensor dataset."
+    ),
+}
+
+_QUICK_WIN_MAP: dict[str, str] = {
+    "python":           "Complete CS50P or freeCodeCamp Python course (free, 1-2 weeks)",
+    "sql":              "Complete Mode Analytics SQL Tutorial (free, 2-4 h) + one Kaggle SQL challenge",
+    "machine learning": "Take fast.ai Lesson 1-3 (free) and train a model on a Kaggle starter dataset",
+    "deep learning":    "Build a PyTorch neural network on MNIST using the official tutorials (1 weekend)",
+    "computer vision":  "Complete a YOLO object-detection mini-project with Ultralytics docs (2-3 h)",
+    "agentic ai":       "Build a LangChain/LangGraph agent with web search + memory in one weekend",
+    "pytorch":          "Follow PyTorch Official Quickstart → train a custom image classifier (1 week)",
+    "tensorflow":       "Complete TensorFlow Developer Certificate curriculum on Coursera (free audit)",
+    "deployment":       "Containerise one existing project with Docker (official get-started guide, 2-3 h)",
+    "cloud":            "Complete AWS Free Tier tutorial: deploy a simple app to Lambda or EC2 (1 day)",
+    "backend api":      "Build a CRUD REST API with FastAPI + PostgreSQL (FastAPI docs, 1 day)",
+    "frontend":         "Build a React dashboard that calls your own API (Scrimba free course, 1 week)",
+    "testing":          "Add pytest tests to an existing Python project — aim for 80% coverage (2-3 h)",
+    "data processing":  "Work through Pandas documentation exercises + complete one EDA Kaggle notebook",
+    "etl":              "Build a simple ETL: CSV → Pandas transform → PostgreSQL load (1 day)",
+    "data modeling":    "Complete dbt Learn course (free, 2-3 h) + model a star-schema dataset",
+    "airflow":          "Set up Airflow locally with Docker Compose and write your first DAG (1 day)",
+    "spark":            "Complete Databricks Community Edition free Spark tutorial (1-2 days)",
+    "scikit-learn":     "Work through scikit-learn User Guide examples on a Kaggle competition dataset",
+    "mlflow":           "Add MLflow tracking to any existing training script (MLflow quickstart, 1 h)",
+    "git":              "Complete 'Learn Git Branching' (free interactive game) in 2-3 h",
+    "algorithms":       "Start NeetCode 150 on LeetCode — Easy arrays/strings first (free)",
+    "cad":              "Complete Onshape free CAD Fundamentals (browser-based, no install, 3 h)",
+    "solidworks":       "Start MySolidWorks free online fundamentals on MathWorks (2-3 h)",
+    "autocad":          "Use Autodesk AutoCAD web app free tutorial (no installation required)",
+    "matlab":           "Complete MATLAB Onramp on MathWorks (free, 2 h)",
+    "simulation":       "Run a simple FEM simulation in FreeCAD (open-source) or ANSYS Student (free)",
+    "digital twin":     "Study Azure Digital Twins free docs + build a basic twin model (1-2 days)",
+    "thermodynamics":   "Review MIT OpenCourseWare 2.005 lecture notes (free)",
+    "materials":        "Audit MIT 3.091 Intro to Solid State Chemistry on OCW (free)",
+    "manufacturing":    "Study CNC and additive manufacturing basics on Coursera (free audit)",
+    "data analysis":    "Complete a Python data analysis project on a public engineering dataset (1 day)",
+}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Role detection
+# ─────────────────────────────────────────────────────────────────────────────
+
 _ROLE_PATTERNS: list[tuple[str, str]] = [
+    # Most-specific patterns first to prevent partial matches
     (r"\bmachine\s+learning\s+engineer\b",       "ml_engineer"),
     (r"\bml\s+engineer\b",                        "ml_engineer"),
     (r"\bartificial\s+intelligence\s+engineer\b", "ai_engineer"),
@@ -96,9 +263,9 @@ _ROLE_PATTERNS: list[tuple[str, str]] = [
 
 def detect_target_role(query: str) -> str:
     """
-    Detect the target career role from free text.
-    Returns a canonical role key (e.g. "ai_engineer").
-    Falls back to DEFAULT_ROLE when nothing is recognised.
+    Detect the target career role from free text using ordered regex patterns.
+    Returns a canonical role key. Falls back to DEFAULT_ROLE if unrecognised.
+    "machine engineer" is normalised to "mechanical_engineer".
     """
     q = query.lower()
     for pattern, role in _ROLE_PATTERNS:
@@ -107,19 +274,40 @@ def detect_target_role(query: str) -> str:
     return DEFAULT_ROLE
 
 
-def get_target_skills(role: str) -> list[str]:
-    """Return the canonical skill list for a role key. Falls back to AI Engineer."""
+def get_target_skills(role: str) -> dict[str, list[str]]:
+    """
+    Return the categorised skill dict for a role key.
+    Falls back to the AI Engineer map for unknown roles.
+    """
     return ROLE_SKILL_MAP.get(role, ROLE_SKILL_MAP[DEFAULT_ROLE])
+
+
+def flatten_target_skills(target_skill_dict: dict[str, list[str]]) -> list[str]:
+    """Flatten a categorised skill dict into a deduplicated ordered list."""
+    seen: set[str] = set()
+    result: list[str] = []
+    for skills in target_skill_dict.values():
+        for s in skills:
+            if s not in seen:
+                seen.add(s)
+                result.append(s)
+    return result
 
 
 def extract_skills_from_text(text: str) -> list[str]:
     """
-    Keyword-based skill extraction from free text.
+    Keyword-based skill extraction with synonym normalisation.
 
-    Uses regex word-boundary matching. Multi-word phrases like "digital twin"
-    and "data modeling" are matched as complete phrases. Aliases are normalised
-    (e.g. "data modelling" → "data modeling", "sklearn" → "scikit-learn").
-    Returns a sorted, lowercase, deduplicated list.
+    1. Scans KNOWN_SKILLS against the input using regex word-boundary matching.
+       Multi-word phrases (e.g. "digital twin") are matched as complete phrases.
+    2. Maps each matched token through SKILL_SYNONYMS to a canonical form.
+    3. Returns a sorted, deduplicated list of canonical skill names.
+
+    Examples:
+        "opencv" → "computer vision"
+        "langchain" → "agentic ai"
+        "docker" → "deployment"
+        "pytorch" → "pytorch"  (no synonym, kept as-is)
     """
     if not text:
         return []
@@ -130,92 +318,98 @@ def extract_skills_from_text(text: str) -> list[str]:
     for skill in KNOWN_SKILLS:
         pattern = r"\b" + re.escape(skill) + r"\b"
         if re.search(pattern, text_lower):
-            # Normalise aliases to canonical form
-            if skill == "data modelling":
-                found.add("data modeling")
-            elif skill == "sklearn":
-                found.add("scikit-learn")
-            else:
-                found.add(skill)
+            canonical = SKILL_SYNONYMS.get(skill, skill)
+            found.add(canonical)
 
     return sorted(found)
 
 
 def compute_match_score(
     user_skills: list[str],
-    target_skills: list[str],
+    target_skill_dict: dict[str, list[str]],
+    target_role: str,
 ) -> dict:
     """
-    Compute a structured career match score.
+    Compute a structured, role-aware career match score.
+
+    Args:
+        user_skills:       Normalised skills from extract_skills_from_text().
+        target_skill_dict: Categorised skill map from get_target_skills().
+        target_role:       Canonical role key (e.g. "ai_engineer").
 
     Returns a dict with:
-        match_score      int   0–100  weighted composite
-        skills_match     int   0–100  % of target skills the user covers
-        experience_match int   0–100  breadth heuristic based on skill count
-        market_demand    str   "low" | "medium" | "high"
-        matched_skills   list  intersection of user and target skills
-        missing_skills   list  target skills the user is missing
+        target_role          str   human-readable role name
+        match_score          int   0–100  weighted composite
+        skills_match         int   0–100  coverage of target flat skill list
+        experience_match     int   0–100  breadth + portfolio heuristic
+        market_demand        str   "low" | "medium" | "high"
+        detected_skills      list  canonical skills found in user text
+        missing_skills       list  target skills the user is missing
+        strong_skills        list  target skills the user already has
+        quick_wins           list  top-3 most learnable missing skills with steps
+        project_recommendation str  role-specific capstone project idea
     """
-    if not target_skills:
-        return {
-            "match_score":      0,
-            "skills_match":     0,
-            "experience_match": 50,
-            "market_demand":    "medium",
-            "matched_skills":   [],
-            "missing_skills":   [],
-        }
+    target_flat = flatten_target_skills(target_skill_dict)
+    target_set  = set(target_flat)
+    user_set    = set(user_skills)
 
-    user_set   = set(user_skills)
-    target_set = set(target_skills)
+    strong_skills  = sorted(user_set & target_set)
+    missing_skills = sorted(target_set - user_set)
 
-    matched = sorted(user_set & target_set)
-    missing = sorted(target_set - user_set)
+    # Skills coverage of the target list
+    skills_match = int(len(strong_skills) / max(len(target_set), 1) * 100)
 
-    # Skills coverage
-    skills_match = int(len(matched) / len(target_set) * 100)
-
-    # Experience breadth heuristic
+    # Experience breadth heuristic: more distinct canonical skills = broader profile
     n = len(user_skills)
-    if n >= 6:
-        experience_match = 80
-    elif n >= 4:
-        experience_match = 65
+    if n >= 7:
+        experience_match = 85
+    elif n >= 5:
+        experience_match = 75
+    elif n >= 3:
+        experience_match = 60
     else:
-        experience_match = 50
+        experience_match = 45
 
-    # Market demand derived from target skill set
-    target_text = " ".join(target_skills).lower()
-    if any(kw in target_text for kw in ("ai", "ml", "data", "llm", "nlp", "rag", "etl")):
-        market_demand = "high"
-        demand_score  = 100
-    elif any(kw in target_text for kw in ("api", "testing", "docker", "simulation", "cad")):
-        market_demand = "medium"
-        demand_score  = 70
-    else:
-        market_demand = "medium"
-        demand_score  = 70
+    # Market demand from role metadata
+    market_demand, demand_score = _ROLE_DEMAND.get(target_role, ("medium", 70))
 
+    # Weighted composite: skills 60%, experience 25%, market 15%
     match_score = int(
-        0.6 * skills_match +
-        0.3 * experience_match +
-        0.1 * demand_score
+        0.60 * skills_match +
+        0.25 * experience_match +
+        0.15 * demand_score
     )
 
+    # Quick wins: actionable steps for up to 3 missing skills
+    quick_wins = [
+        _QUICK_WIN_MAP[s]
+        for s in missing_skills
+        if s in _QUICK_WIN_MAP
+    ][:3]
+
     return {
-        "match_score":      match_score,
-        "skills_match":     skills_match,
-        "experience_match": experience_match,
-        "market_demand":    market_demand,
-        "matched_skills":   matched,
-        "missing_skills":   missing,
+        "target_role":            ROLE_DISPLAY_NAMES.get(target_role, target_role),
+        "match_score":            match_score,
+        "skills_match":           skills_match,
+        "experience_match":       experience_match,
+        "market_demand":          market_demand,
+        "detected_skills":        sorted(user_skills),
+        "missing_skills":         missing_skills,
+        "strong_skills":          strong_skills,
+        "quick_wins":             quick_wins,
+        "project_recommendation": PROJECT_RECOMMENDATIONS.get(
+            target_role,
+            "Build an end-to-end project combining your existing skills with one new technology. "
+            "Push it to GitHub with a complete README and a live demo.",
+        ),
     }
 
 
-def format_score_section(score: dict, user_skills: list[str], role_name: str) -> str:
+def format_score_section(score: dict) -> str:
     """
-    Render a Markdown Match Score Analysis block for when user skills ARE available.
-    Returns an empty string if score dict is empty or invalid.
+    Render a Markdown '## Match Score & Career Recommendations' block
+    from a compute_match_score() result dict.
+    Returns an empty string if the score dict is missing or empty.
     """
     if not score:
         return ""
@@ -227,17 +421,19 @@ def format_score_section(score: dict, user_skills: list[str], role_name: str) ->
     }.get(score.get("market_demand", "medium"), "Medium ⚡")
 
     ms = score.get("match_score", 0)
+    role_name = score.get("target_role", "AI Engineer")
+
     if ms >= 70:
         score_label    = f"{ms}% 🟢"
         interpretation = (
-            f"You are well-aligned with {role_name} role requirements. "
-            "Filling the missing skills below will make your profile highly competitive."
+            f"You are well-aligned with {role_name} requirements. "
+            "Closing the missing skills below will make your profile highly competitive."
         )
     elif ms >= 50:
         score_label    = f"{ms}% 🟡"
         interpretation = (
             f"You are moderately aligned with {role_name} requirements. "
-            "You have a solid foundation, but key tools are missing — prioritise the gaps below."
+            "You have a solid foundation — prioritise the missing skills and quick wins below."
         )
     else:
         score_label    = f"{ms}% 🔴"
@@ -246,23 +442,18 @@ def format_score_section(score: dict, user_skills: list[str], role_name: str) ->
             "Focus on the missing skills below before applying to this role."
         )
 
+    strong  = score.get("strong_skills", [])
     missing = score.get("missing_skills", [])
-    matched = score.get("matched_skills", [])
+    qw      = score.get("quick_wins", [])
+    project = score.get("project_recommendation", "")
 
-    missing_lines = (
-        "\n".join(f"  - `{s}`" for s in missing)
-        if missing
-        else "  ✅ None — you have full coverage of the core skill set!"
-    )
-    matched_lines = (
-        ", ".join(f"`{s}`" for s in matched)
-        if matched
-        else "None detected"
-    )
+    strong_lines  = ", ".join(f"`{s}`" for s in strong)  if strong  else "None detected yet"
+    missing_lines = "\n".join(f"  - `{s}`" for s in missing) if missing else "  ✅ Full coverage!"
+    qw_lines      = "\n".join(f"  {i+1}. {w}" for i, w in enumerate(qw)) if qw else "  No quick wins needed — great coverage!"
 
     return (
         f"\n\n---\n\n"
-        f"## Match Score Analysis\n\n"
+        f"## Match Score & Career Recommendations\n\n"
         f"**Target Role:** {role_name}\n\n"
         f"**Overall Match Score: {score_label}**\n\n"
         f"| Dimension | Score |\n"
@@ -270,65 +461,81 @@ def format_score_section(score: dict, user_skills: list[str], role_name: str) ->
         f"| Skills Match | {score.get('skills_match', 0)}% |\n"
         f"| Experience Breadth | {score.get('experience_match', 0)}% |\n"
         f"| Market Demand | {demand_display} |\n\n"
-        f"**Matched Skills:** {matched_lines}\n\n"
-        f"**Missing Core Skills:**\n{missing_lines}\n\n"
+        f"**Detected Strengths:** {strong_lines}\n\n"
+        f"**Missing Skills:**\n{missing_lines}\n\n"
+        f"**Quick Wins (learn these first):**\n{qw_lines}\n\n"
+        f"**Recommended Portfolio Project:**\n{project}\n\n"
         f"**Interpretation:** {interpretation}\n\n"
         f"---\n\n"
     )
 
 
-def format_no_skills_section(role_name: str, target_skills: list[str]) -> str:
+def format_no_skills_section(
+    role_name: str,
+    target_skill_dict: dict[str, list[str]],
+) -> str:
     """
-    Render an informative Match Score block when no user skills were detected in the query.
-    Shows the target role, its required skills, and asks the user to provide their profile.
+    Render an informative block when no user skills were detected in the query.
+    Shows the required skills by category and prompts the user to provide their profile.
     """
-    skills_list = "\n".join(f"  - {s.title()}" for s in target_skills)
+    category_lines = ""
+    for category, skills in target_skill_dict.items():
+        skill_str = ", ".join(skills)
+        category_lines += f"  **{category.replace('_', ' ').title()}:** {skill_str}\n"
 
     return (
         f"\n\n---\n\n"
-        f"## Match Score Analysis\n\n"
-        f"**Match Score:** Not enough user skill data\n\n"
+        f"## Match Score & Career Recommendations\n\n"
         f"**Target Role:** {role_name}\n\n"
+        f"**Match Score:** Not enough user skill data\n\n"
         f"**Detected User Skills:** Not provided\n\n"
-        f"**Required Skills for {role_name}:**\n{skills_list}\n\n"
-        f"### Missing Information\n\n"
-        f"To calculate a real score, include your current skills, tools, projects, "
-        f"and experience level in your query. For example:\n\n"
-        f"> *\"I have Python and MATLAB experience. "
+        f"**Required Skills by Category:**\n{category_lines}\n"
+        f"### What to Do Next\n\n"
+        f"Include your current skills, tools, and projects in your query to get a "
+        f"personalised score. For example:\n\n"
+        f"> *\"I have Python and MATLAB. "
         f"Analyze my skill gaps for {role_name} roles.\"*\n\n"
         f"### Interpretation\n\n"
-        f"The agent identified your target role as **{role_name}** but needs "
-        f"your current skill profile to calculate a meaningful match score.\n\n"
+        f"Target role **{role_name}** was detected from your query. "
+        f"Provide your current skill profile to unlock a personalised match score "
+        f"and targeted recommendations.\n\n"
         f"---\n\n"
     )
 
 
 if __name__ == "__main__":
-    print("── Test 1: AI Engineer with skills ──")
-    q1      = "I have Python, FastAPI, SQL, YOLO, OpenCV. Analyze my gaps for AI Engineer roles."
+    sep = "─" * 60
+
+    print(f"\n{sep}")
+    print("Test 1: AI Engineer with skills")
+    q1      = "I have Python, FastAPI, SQL, YOLO, OpenCV, LangChain, Docker. Gaps for AI Engineer?"
     role1   = detect_target_role(q1)
     skills1 = extract_skills_from_text(q1)
     target1 = get_target_skills(role1)
-    score1  = compute_match_score(skills1, target1)
-    print(f"Role:     {ROLE_DISPLAY_NAMES[role1]}")
-    print(f"Skills:   {skills1}")
-    print(format_score_section(score1, skills1, ROLE_DISPLAY_NAMES[role1]))
+    score1  = compute_match_score(skills1, target1, role1)
+    print(f"Role:    {ROLE_DISPLAY_NAMES[role1]}")
+    print(f"Skills:  {skills1}")
+    print(f"Score:   {score1['match_score']}%  |  strong={score1['strong_skills']}  |  missing={score1['missing_skills']}")
+    print(format_score_section(score1))
 
-    print("── Test 2: Machine Engineer, no skills (normalised → Mechanical Engineer) ──")
+    print(f"\n{sep}")
+    print("Test 2: Machine engineer, no skills (normalised → Mechanical Engineer)")
     q2      = "check the recent updates, how can i be a machine engineer with the newest informations"
     role2   = detect_target_role(q2)
     skills2 = extract_skills_from_text(q2)
     target2 = get_target_skills(role2)
-    print(f"Role:     {ROLE_DISPLAY_NAMES[role2]}")
-    print(f"Skills:   {skills2}")
+    print(f"Role:    {ROLE_DISPLAY_NAMES[role2]}")
+    print(f"Skills:  {skills2}")
     print(format_no_skills_section(ROLE_DISPLAY_NAMES[role2], target2))
 
-    print("── Test 3: Data Engineer with skills ──")
-    q3      = "I have Python, SQL, Airflow, Spark, Docker. What gaps do I have for Data Engineer?"
+    print(f"\n{sep}")
+    print("Test 3: Data Engineer with skills")
+    q3      = "I know Python, SQL, Airflow, Spark, Docker, dbt. What gaps for Data Engineer?"
     role3   = detect_target_role(q3)
     skills3 = extract_skills_from_text(q3)
     target3 = get_target_skills(role3)
-    score3  = compute_match_score(skills3, target3)
-    print(f"Role:     {ROLE_DISPLAY_NAMES[role3]}")
-    print(f"Skills:   {skills3}")
-    print(format_score_section(score3, skills3, ROLE_DISPLAY_NAMES[role3]))
+    score3  = compute_match_score(skills3, target3, role3)
+    print(f"Role:    {ROLE_DISPLAY_NAMES[role3]}")
+    print(f"Skills:  {skills3}")
+    print(f"Score:   {score3['match_score']}%  |  strong={score3['strong_skills']}  |  missing={score3['missing_skills']}")
+    print(format_score_section(score3))

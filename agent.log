@@ -9,3 +9,20 @@
 2026-05-05 14:25:52,530 [INFO] Both node: query='check the recent updates, how can ı be a machine engıneer with the newest informatıons'
 2026-05-05 14:26:04,495 [INFO] Synthesizer | intent=career_plan | query='check the recent updates, how can ı be a machine engıneer with the newest informatıons'
 2026-05-05 14:26:11,204 [INFO] Query logged | route=both       | 21156 ms | success=True
+2026-05-05 14:39:55,940 [INFO] Router | intent=career_plan     | route=both       | query='check the recent updates, how can i be a machine engineer with the newest informatıons'
+2026-05-05 14:39:56,233 [INFO] Both node: query='check the recent updates, how can i be a machine engineer with the newest informatıons'
+2026-05-05 14:40:04,700 [INFO] Synthesizer | intent=career_plan | query='check the recent updates, how can i be a machine engineer with the newest informatıons'
+2026-05-05 14:40:11,278 [INFO] Match score | no-skills | role=mechanical_engineer | intent=career_plan
+2026-05-05 14:40:11,278 [INFO] Query logged | route=both       | 18125 ms | success=True
+2026-05-05 22:18:05,866 [INFO] Router | intent=career_plan     | route=both       | query='I have Python, FastAPI, SQL, YOLO, OpenCV, LangChain, Docker. Analyze my skill gaps for AI Engineer roles and create a 30-day plan.'
+2026-05-05 22:18:06,510 [INFO] Both node: query='I have Python, FastAPI, SQL, YOLO, OpenCV, LangChain, Docker. Analyze my skill gaps for AI Engineer roles and create a 30-day plan.'
+2026-05-05 22:18:16,829 [INFO] Synthesizer | intent=career_plan | query='I have Python, FastAPI, SQL, YOLO, OpenCV, LangChain, Docker. Analyze my skill gaps for AI Engineer roles and create a 30-day plan.'
+2026-05-05 22:18:26,844 [INFO] Match score | 66% | role=ai_engineer | skills_match=50% | intent=career_plan
+2026-05-05 22:18:26,844 [INFO] Query logged | route=both       | 23718 ms | success=True
+2026-05-05 22:27:47,289 [INFO] Router | intent=general_research | route=rag_only   | query='What is Retrieval-Augmented Generation?'
+2026-05-05 22:27:47,299 [INFO] RAG node: query='What is Retrieval-Augmented Generation?'
+2026-05-05 22:27:48,522 [INFO] Synthesizer | intent=general_research | query='What is Retrieval-Augmented Generation?'
+2026-05-05 22:28:37,253 [INFO] Router | intent=career_plan     | route=both       | query='I have Python, FastAPI, SQL, YOLO, OpenCV, LangChain, Docker. Analyze my skill gaps for AI Engineer roles and create a 30-day plan.'
+2026-05-05 22:28:37,259 [INFO] Both node: query='I have Python, FastAPI, SQL, YOLO, OpenCV, LangChain, Docker. Analyze my skill gaps for AI Engineer roles and create a 30-day plan.'
+2026-05-05 22:28:42,589 [INFO] Synthesizer | intent=career_plan | query='I have Python, FastAPI, SQL, YOLO, OpenCV, LangChain, Docker. Analyze my skill gaps for AI Engineer roles and create a 30-day plan.'
+2026-05-05 22:28:50,184 [INFO] Match score | 66% | role=ai_engineer | skills_match=50% | intent=career_plan

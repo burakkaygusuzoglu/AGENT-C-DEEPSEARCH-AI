@@ -258,7 +258,14 @@ If no profile was provided, describe the typical gaps for someone targeting this
 Give concrete, numbered steps. For career/roadmap queries include a 7-day quick-start
 or a 30-day plan with weekly milestones. Mention specific platforms, tools, or resources.
 
-## 6. Sources
+## 6. Extra Career Suggestions
+Even if the user asked a trend or research question, always include this section.
+- **Skill to learn next:** One specific recommendation with a free resource.
+- **Mini-project to build:** One concrete, completable project idea (2 sentences max).
+- **GitHub action:** One thing to publish, improve, or add to GitHub right now.
+- **Market signal to track:** One newsletter, job board, or trend index to monitor weekly.
+
+## 7. Sources
 Leave this section blank — web references are appended automatically below.
 
 Rules: Be direct and specific. Never say "I don't have information." Use what you retrieved.
@@ -299,35 +306,38 @@ Sources available: {sources_used}
     ])
 
     # ── Match Score injection ─────────────────────────────────────────────────
-    # Active for: skill_gap, career_plan, job_research, tech_trend
-    SCORE_INTENTS = {"skill_gap", "career_plan", "job_research", "tech_trend"}
+    # Active for all career/tech intents including interview_prep
+    SCORE_INTENTS = {
+        "skill_gap", "career_plan", "job_research", "tech_trend", "interview_prep",
+    }
     answer = response.content
 
     if intent in SCORE_INTENTS:
-        query_text    = state.get("query", "")
-        user_skills   = extract_skills_from_text(query_text)
-        target_role   = detect_target_role(query_text)
-        target_skills = get_target_skills(target_role)
-        role_name     = ROLE_DISPLAY_NAMES.get(target_role, "AI Engineer")
+        query_text        = state.get("query", "")
+        user_skills       = extract_skills_from_text(query_text)
+        target_role       = detect_target_role(query_text)
+        target_skill_dict = get_target_skills(target_role)
+        role_name         = ROLE_DISPLAY_NAMES.get(target_role, "AI Engineer")
 
         if user_skills:
-            score       = compute_match_score(user_skills, target_skills)
-            score_block = format_score_section(score, user_skills, role_name)
+            score       = compute_match_score(user_skills, target_skill_dict, target_role)
+            score_block = format_score_section(score)
             print(f"📊 Match scoring applied  "
                   f"(role={role_name}, score={score['match_score']}%, "
-                  f"skills={score['skills_match']}%, demand={score['market_demand']})")
+                  f"skills_match={score['skills_match']}%, demand={score['market_demand']})")
             logger.info(
                 "Match score | %d%% | role=%s | skills_match=%d%% | intent=%s",
                 score["match_score"], target_role, score["skills_match"], intent,
             )
         else:
-            score_block = format_no_skills_section(role_name, target_skills)
-            print(f"📊 Match scoring applied  (role={role_name}, no user skills detected)")
+            score_block = format_no_skills_section(role_name, target_skill_dict)
+            print(f"📊 Match scoring applied  (role={role_name}, no user skills detected — showing requirements)")
             logger.info(
                 "Match score | no-skills | role=%s | intent=%s", target_role, intent,
             )
 
-        # Inject before "## 5. Recommended Action Plan" when the LLM used that marker
+        # Inject before "## 5. Recommended Action Plan" when the marker is present,
+        # otherwise append before the source citations block.
         marker = "## 5."
         if marker in answer:
             idx    = answer.index(marker)
